@@ -1,0 +1,9 @@
+\babel@toc {ngerman}{}\relax 
+\contentsline {section}{\numberline {1}Forschungsfragen}{2}{section.1}%
+\contentsline {section}{\numberline {2}Stand der Forschung}{3}{section.2}%
+\contentsline {section}{\numberline {3}Theoretischer Hintergrund}{4}{section.3}%
+\contentsline {section}{\numberline {4}Stand der Forschung}{6}{section.4}%
+\contentsline {section}{\numberline {5}Ziel der Dissertation}{7}{section.5}%
+\contentsline {section}{\numberline {6}Forschungsdesign und Methodik}{8}{section.6}%
+\contentsline {section}{\numberline {7}Zeit- und Arbeitsplan}{9}{section.7}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

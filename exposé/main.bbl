@@ -1,0 +1,66 @@
+\begin{thebibliography}{10}
+
+\bibitem{Xing2021SurveyOB}
+Y.~Xing, H.~Shu, H.~Zhao, D.~Li, and L.~Guo, ``Survey on botnet detection
+  techniques: Classification, methods, and evaluation,'' {\em Mathematical
+  Problems in Engineering}, vol.~2021, pp.~1--24, 2021.
+
+\bibitem{DBLP:conf/cycon/CasenoveM14}
+M.~Casenove and A.~Miraglia, ``Botnet over tor: The illusion of hiding,'' in
+  {\em 6th International Conference on Cyber Conflict, CyCon 2014, Tallinn,
+  Estonia, June 3-6, 2014} (P.~Brangetto, M.~Maybaum, and J.~Stinissen, eds.),
+  pp.~273--282, {IEEE}, 2014.
+
+\bibitem{DBLP:conf/esorics/KurtECAU20}
+A.~Kurt, E.~Erdin, M.~Cebe, K.~Akkaya, and A.~S. Uluagac, ``Lnbot: {A} covert
+  hybrid botnet on bitcoin lightning network for fun and profit,'' in {\em
+  Computer Security - {ESORICS} 2020 - 25th European Symposium on Research in
+  Computer Security, {ESORICS} 2020, Guildford, UK, September 14-18, 2020,
+  Proceedings, Part {II}} (L.~Chen, N.~Li, K.~Liang, and S.~A. Schneider,
+  eds.), vol.~12309 of {\em Lecture Notes in Computer Science}, pp.~734--755,
+  Springer, 2020.
+
+\bibitem{SCHILLER200729}
+C.~A. Schiller, J.~Binkley, D.~Harley, G.~Evron, T.~Bradley, C.~Willems, and
+  M.~Cross, ``Chapter 2 - botnets overview,'' in {\em Botnets} (C.~A. Schiller,
+  J.~Binkley, D.~Harley, G.~Evron, T.~Bradley, C.~Willems, and M.~Cross, eds.),
+  pp.~29--75, Burlington: Syngress, 2007.
+
+\bibitem{Wazzan2021InternetOT}
+M.~Wazzan, D.~Algazzawi, O.~Bamasaq, A.~A. Albeshri, and L.~Cheng, ``Internet
+  of things botnet detection approaches: Analysis and recommendations for
+  future research,'' {\em Applied Sciences}, 2021.
+\newblock
+  \url{https://pdfs.semanticscholar.org/8dc2/d3f4e1120ebd9170dc68d72b17a96189729d.pdf},
+  last accessed 2022-11-29.
+
+\bibitem{10.1007/978-3-030-33229-7_21}
+P.~Beltr{\'a}n-Garc{\'i}a, E.~Aguirre-Anaya, P.~J. Escamilla-Ambrosio, and
+  R.~Acosta-Bermejo, ``Iot botnets,'' in {\em Telematics and Computing} (M.~F.
+  Mata-Rivera, R.~Zagal-Flores, and C.~Barr{\'i}a-Huidobro, eds.), (Cham),
+  pp.~247--257, Springer International Publishing, 2019.
+
+\bibitem{Alzahrani2020}
+H.~Alzahrani, M.~Abulkhair, and E.~Alkayal, ``A multi-class neural network
+  model for rapid detection of iot botnet attacks,'' {\em International Journal
+  of Advanced Computer Science and Applications}, vol.~11, no.~7, 2020.
+
+\bibitem{DBLP:journals/computer/VlajicZ18}
+N.~Vlajic and D.~Zhou, ``Iot as a land of opportunity for ddos hackers,'' {\em
+  Computer}, vol.~51, no.~7, pp.~26--34, 2018.
+
+\bibitem{NGUYEN2020128}
+H.-T. Nguyen, Q.-D. Ngo, D.-H. Nguyen, and V.-H. Le, ``Psi-rooted subgraph: A
+  novel feature for iot botnet detection using classifier algorithms,'' {\em
+  ICT Express}, vol.~6, no.~2, pp.~128--138, 2020.
+
+\bibitem{DBLP:journals/compsec/SinghSK19}
+M.~Singh, M.~Singh, and S.~Kaur, ``Issues and challenges in {DNS} based botnet
+  detection: {A} survey,'' {\em Comput. Secur.}, vol.~86, pp.~28--52, 2019.
+
+\bibitem{DBLP:journals/ijcysa/StevanovicP16}
+M.~Stevanovic and J.~M. Pedersen, ``Detecting bots using multi-level traffic
+  analysis,'' {\em Int. J. Cyber Situational Aware.}, vol.~1, no.~1,
+  pp.~182--209, 2016.
+
+\end{thebibliography}

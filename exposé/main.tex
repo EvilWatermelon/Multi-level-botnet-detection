@@ -1,0 +1,86 @@
+\documentclass[
+    a4paper,
+    pagesize,
+	pdftex,
+    12pt,
+]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+\usepackage[unicode=true]{hyperref}
+\usepackage{graphicx}
+\usepackage[nopatch=footnote,draft=false,babel,tracking=true,kerning=true,spacing=true]{microtype}
+
+\usepackage{enumerate}
+\usepackage{subcaption}
+\usepackage{abstract}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage[table]{xcolor}  
+
+\graphicspath{{./pictures/}}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        
+        \includegraphics[height=25mm]{S04_HTW_Berlin_Logo_pos_FARBIG_RGB.jpg} \\
+        \vspace{1.0cm}
+         Mehrschichtige Erkennung von IoT-Botnetzen während der Scan-, Ausbreitungs- und Angriffsphase
+             
+        \vspace{1.5cm}
+ 
+        \textbf{Exposé zur Dissertation} \\    
+        zur Erlangung des Grades eines\\
+        Doktors
+
+        \vspace{1.5cm}
+        am Fachbereich 4 - Informatik, Kommunikation und Wirtschaft\\
+        der Hochschule für Technik und Wirtschaft Berlin\\
+        
+        \vspace{1.5cm}
+
+        vorgelegt von \\
+        \textbf{Jan Schröder}
+      
+        %\includegraphics[width=0.4\textwidth]{university}
+        \vspace{1.5cm}    
+        Berlin, \today\\
+        
+             
+    \end{center}
+\end{titlepage}
+
+\pagenumbering{gobble}
+
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+
+\input{./chapter/term_table.tex}
+\newpage
+\input{./chapter/questions.tex}
+\newpage
+\input{./chapter/research.tex}
+\newpage
+\input{./chapter/introduction.tex}
+\newpage
+\input{./chapter/research.tex}
+\newpage
+\input{./chapter/goals.tex}
+\newpage
+\input{./chapter/methods.tex}
+\newpage
+\input{./chapter/timeplan.tex}
+\newpage
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}
