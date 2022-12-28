@@ -1,4 +1,5 @@
 \section{Theoretischer Hintergrund}
+\label{sec:theory}
 
 Internet of Things (IoT) ist ein Gebiet, welches dem Alltag viele Vorteile bringt. Durch die Möglichkeit
 Geräte aus dem Alltag mit dem Internet zu verbinden, birgt IoT aber auch Sicherheitslücken die besagte Geräte sehr Gefährlich
@@ -20,7 +21,7 @@ Nach der Erläuterung wie Botnetze funktionieren wäre nun zu fragen, wie der Pr
 Nach Xing et al. \cite{Xing2021SurveyOB} kann die Botnetz Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und abnormales Verhalten klassifiziert
 werden. Wie Abbildung \ref{fig:bot_det_met} zeigt, unterteilen diese Klassifikationen Methoden zur Erkennung. 
 
-\begin{figure}[b!]
+\begin{figure}[h!]
     \centering
     \includegraphics[scale=0.314]{./pictures/botnet_detection_methods.png}
     \caption{Klassifizierte Erkennungsmethoden von Botnetzen (übernommen von \cite{Xing2021SurveyOB}).}
@@ -33,10 +34,28 @@ auch nicht von der \textit{Honeypot Analyse} erfasst werden. Weit verbreitet sin
 werden in Intrusion Detection Systems (IDS) Regeln für den Merkmalsabgleich hinterlegt um Botnetz aktivitäten zu identifizieren. Dadurch können IDS Botnetze mit bestimmten Merkmalen 
 erkennen, aber unbekannte Funktionen werden dabei nicht erkannt sowie auch Botnetze die Techniken zur Verschleierung von Code nutzen. Bei den Methoden die durch 
 \textit{abnormales Verhalten} ist die Idee, Hostverhalten oder Netzwerkverkehr Auffälligkeiten zwischen gutartigem und bösartigem Verhalten zu erkennen. Neben den erwähnten Methoden 
-erläutern Singh et al. \cite{DBLP:journals/compsec/SinghSK19} Techniken, zur Erkennung von Botnetzen. Singh et al. klassifizieren die Techniken in Flow-, Anomalie-, Flux-, DGA-basierten und
-Bot infizierungs Erkennung. Die Umsetzung mit mehreren Erkennungsstufen erklären Stevanovic und Pedersen \cite{DBLP:journals/ijcysa/StevanovicP16}. Diese Erkennung soll mehr Geräte vor der illegalen Verwendung schützen.
+erläutern Singh et al. \cite{DBLP:journals/compsec/SinghSK19} Techniken, zur Erkennung von Botnetzen. Singh et al. klassifizieren die Techniken in Flow-, Anomalie-, Flussmittel-, Domain Generation 
+Algorithm (DGA)-basierten \cite{DBLP:journals/jksucis/ManasrahKF22} und Bot infizierungs Erkennung. Bei der Flow-basierten Technik findet eine Klassifizierung des Netzwerkverkehrs auf 
+Basis von verschiedenen Parametern statt, wobei eine Aufteilung des Verkehrs in bösartig und gutartig stattfindet. Anhand von Parametern oder Mustern versucht die Anomalie-basierte Technik 
+anomalien im Netzwerkverkehr zu finden, die sich vom regulären Verkehr unterscheiden. Über die Flussmittel-basierte Technik werden im Netzwerkverkehr IP-Flüsse gefunden. Dabei wird darauf 
+geachtet, wie sich die IP-Larte verändert, welche in Relation zur einer Domäne steht und einen niedrigen Time To Live (TTL)-Wert hat. Die Konzentrationen auf abgefragte Domänen führt die 
+DGA-basierte Technik durch. Mit dieser Technik soll zwischen algorithmischen bösartig erzeugten und gutartigen Domänen differentiert werden. Nach dem Stand von \cite{DBLP:journals/compsec/SinghSK19} 
+versuchen die aktuelleren Technikansätze, anstatt C\&C-Server zu identifizieren, infizierte Geräte zu erkennen. \\ Die Umsetzung mit mehreren Erkennungsstufen erklären Stevanovic und Pedersen 
+\cite{DBLP:journals/ijcysa/StevanovicP16}. Diese Erkennung nach den unterschiedlichen Methoden und Techniken soll mehr Geräte vor der illegalen Verwendung von Botnetzen schützen. 
 
-% - Welche Erkennungen gibt es zu welcher Phase?
+\subsection*{Angriffsmöglichkeiten zum Testen}
+Um den Prozess der Botnetz Erkennung durch Fallstudien zu testen, sollen in der Dissertation verschiedene Botnetze Verwendung finden und alle drei Phasen durchführen. Dabei sollen bereits bekannte
+Botnetze implementiert und ausgeführt werden. Zusätzlich soll ein Botnetz implementiert werden um Herauszufinden, ob das System auch neue, unbekannte Botnetze erkennt. Der Fokus bei den Botnetzen 
+soll auch weiterhin im IoT Bereich liegen. Kolias et al. \cite{DBLP:journals/computer/KoliasKSV17} weisen in ihrer Arbeit neben Mirai auf die Botnetze Hajime und BricketBot hin. 
+Nach Kolias et al. besteht Mirai aus vier Komponenten, dem \textit{Bot}, dem \textit{C\&C-Server}, der \textit{loader} und der \textit{report Server}. Der \textit{Bot} und \textit{C\&C-Server} weichen
+nicht von der allgemeinen Funktionsweise ab, wie in \ref{sec:theory} erklärt. Der \textit{loader} übernimmt die Kommunikation mit neuen infizierten Geräten und verteilt direkt an sie ausführbare Dateien.
+Der \textit{report Server} verwaltet Informationen über alle Geräte im Botnetz über eine Datenbank und kommuniziert mit den neu infizierten Geräten. Im folgenden Ablauf operiert und kommuniziert Mirai. 
+Zu Beginn scannt Mirai zufällige IP Adressen über TCP ob die Ports 23 oder 2323 zuhören. Über brute-force Angriffe sucht der bot IoT Geräte, die schlecht konfiguriert sind (z.B. Standard Login Daten die
+nicht geändert wurden). Mit einer geöffneten Shell gibt der Bot Informationen über das Gerät an den report Server über einen anderen Port. Der botmaster prüft über den C\&C-Server neu ausgewählte Geräte 
+und anhand des report Servers den aktuellen Status des Botnetzes. Anhand der Informationen über die Geräte kann der Botmaster entsprechende Geräte zum infizieren auswählen und über ein Infect-Befehl 
+über den loader ausführen. Der loader führt auf den ausgewählten Gerät Instruktionen aus zum herunterladen der Malware Binärdatei. Dabei stellt die Malware sicher, dass keine anderen Malware Programme auf
+dem Gerät ausgeführt werden und schließt sowohl Secure Shell (SSH), als auch Telnet Programme. Der neue Bot bekommt über eine Domäne vom C\&C-Server nun mögliche Angriffsbefehle. Den initialen Prozess 
+der Suche nach offenen Ports führt auch Hajime durch. Hajime ist ein Peer-to-Peer Netzwerk, welches auf BitTorrent's Distributed Hash Table (DHT) aufbaut \cite{DBLP:conf/ndss/HerwigHHRL19,2017AnalyzingTP}. 
 
 % - Vielleicht ein ML Modell implementieren was via SDN ein IoT Netzwerk überwacht
 % - Das ganze z.B. mit Mirai testen in einem Labor
@@ -48,5 +67,6 @@ Bot infizierungs Erkennung. Die Umsetzung mit mehreren Erkennungsstufen erkläre
 % - Ich will die Erkennung von Botnetzen verbessen (Ergebnisse sollen darauf beruhen) - Wurde die Erkennung durch meine Diss verbessert?
 % - Mehrere Level der Erkennung während jeder Botnetzphase
 % - Im aktuellen Stand der Forschung auf die Hauptgebiete aus der Einführung eingehen
-% - Level: Host-, Network-, (DNS, Anomaly) based-approach -> auf Basis einer der Techniken, mehrere Protokolle etc. beobachten
-
+% - sus Stevanovic und Pedersen
+% - Mirai, Hajime, BrickerBot
+% - Es geht hierbei nur um die Erkennung, keine Maßnahmen und keine Verteidigung (vielleicht am Ende).
