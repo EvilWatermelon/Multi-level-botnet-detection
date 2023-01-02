@@ -46,18 +46,21 @@ versuchen die aktuelleren Technikansätze, anstatt C\&C-Server zu identifizieren
 \subsection*{Angriffsmöglichkeiten zum Testen}
 Um den Prozess der Botnetz Erkennung durch Fallstudien zu testen, sollen in der Dissertation verschiedene Botnetze Verwendung finden und alle drei Phasen durchführen. Dabei sollen bereits bekannte
 Botnetze implementiert und ausgeführt werden. Zusätzlich soll ein Botnetz implementiert werden um Herauszufinden, ob das System auch neue, unbekannte Botnetze erkennt. Der Fokus bei den Botnetzen 
-soll auch weiterhin im IoT Bereich liegen. Kolias et al. \cite{DBLP:journals/computer/KoliasKSV17} weisen in ihrer Arbeit neben Mirai auf die Botnetze Hajime und BricketBot hin. 
-Nach Kolias et al. besteht Mirai aus vier Komponenten, dem \textit{Bot}, dem \textit{C\&C-Server}, der \textit{loader} und der \textit{report Server}. Der \textit{Bot} und \textit{C\&C-Server} weichen
-nicht von der allgemeinen Funktionsweise ab, wie in \ref{sec:theory} erklärt. Der \textit{loader} übernimmt die Kommunikation mit neuen infizierten Geräten und verteilt direkt an sie ausführbare Dateien.
-Der \textit{report Server} verwaltet Informationen über alle Geräte im Botnetz über eine Datenbank und kommuniziert mit den neu infizierten Geräten. Im folgenden Ablauf operiert und kommuniziert Mirai. 
+soll auch weiterhin im IoT Bereich liegen. Kolias et al. \cite{DBLP:journals/computer/KoliasKSV17} weisen in ihrer Arbeit neben Mirai auf die Botnetze Hajime und BricketBot hin die in der Dissertation
+für die Botnetzerkennung ausgeführt werden sollen. Nach Kolias et al. besteht Mirai aus vier Komponenten, dem \textit{Bot}, dem \textit{C\&C-Server}, der \textit{loader} und der \textit{report Server}. 
+Der \textit{Bot} und \textit{C\&C-Server} weichen nicht von der allgemeinen Funktionsweise ab, wie in \ref{sec:theory} erklärt. Der \textit{loader} übernimmt die Kommunikation mit neuen infizierten 
+Geräten und verteilt direkt an sie ausführbare Dateien. Der \textit{report Server} verwaltet Informationen über alle Geräte im Botnetz über eine Datenbank und kommuniziert mit den neu infizierten Geräten. 
+Im folgenden Ablauf operiert und kommuniziert Mirai. 
 Zu Beginn scannt Mirai zufällige IP Adressen über TCP ob die Ports 23 oder 2323 zuhören. Über brute-force Angriffe sucht der bot IoT Geräte, die schlecht konfiguriert sind (z.B. Standard Login Daten die
 nicht geändert wurden). Mit einer geöffneten Shell gibt der Bot Informationen über das Gerät an den report Server über einen anderen Port. Der botmaster prüft über den C\&C-Server neu ausgewählte Geräte 
 und anhand des report Servers den aktuellen Status des Botnetzes. Anhand der Informationen über die Geräte kann der Botmaster entsprechende Geräte zum infizieren auswählen und über ein Infect-Befehl 
 über den loader ausführen. Der loader führt auf den ausgewählten Gerät Instruktionen aus zum herunterladen der Malware Binärdatei. Dabei stellt die Malware sicher, dass keine anderen Malware Programme auf
 dem Gerät ausgeführt werden und schließt sowohl Secure Shell (SSH), als auch Telnet Programme. Der neue Bot bekommt über eine Domäne vom C\&C-Server nun mögliche Angriffsbefehle. Den initialen Prozess 
 der Suche nach offenen Ports führt auch Hajime durch. Hajime ist ein Peer-to-Peer Netzwerk, welches auf BitTorrent's Distributed Hash Table (DHT) aufbaut \cite{DBLP:conf/ndss/HerwigHHRL19,2017AnalyzingTP}. 
+BitTorrent nutzt das Kademlia Protokoll \cite{DBLP:conf/iptps/MaymounkovM02} und zusätzlich zur direkten Peer-to-Peer Kommunikation nutzt Hajime zusätzlich das uTorrent Transport Protocol. Für weitere
+technische Erläuterungen zu Hajime, analysieren \cite{DBLP:conf/ndss/HerwigHHRL19} die Phasen des Botnetzes.
 
-% - Vielleicht ein ML Modell implementieren was via SDN ein IoT Netzwerk überwacht
+% - Ein ML Modell implementieren was via SDN ein IoT Netzwerk überwacht
 % - Das ganze z.B. mit Mirai testen in einem Labor
 % - Laborexperiment
 % - ML Modell -> Vielleicht Unsupervised Learning, passenden Algorithmus raussuchen (basierend auf den besten Erkennungsmethoden durch ML)
