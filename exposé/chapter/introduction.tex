@@ -41,13 +41,25 @@ anomalien im Netzwerkverkehr zu finden, die sich vom regulären Verkehr untersch
 geachtet, wie sich die IP-Larte verändert, welche in Relation zur einer Domäne steht und einen niedrigen Time To Live (TTL)-Wert hat. Die Konzentrationen auf abgefragte Domänen führt die 
 DGA-basierte Technik durch. Mit dieser Technik soll zwischen algorithmischen bösartig erzeugten und gutartigen Domänen differentiert werden. Nach dem Stand von \cite{DBLP:journals/compsec/SinghSK19} 
 versuchen die aktuelleren Technikansätze, anstatt C\&C-Server zu identifizieren, infizierte Geräte zu erkennen. \\ Die Umsetzung mit mehreren Erkennungsstufen erklären Stevanovic und Pedersen 
-\cite{DBLP:journals/ijcysa/StevanovicP16}. Diese Erkennung nach den unterschiedlichen Methoden und Techniken soll mehr Geräte vor der illegalen Verwendung von Botnetzen schützen. 
+\cite{DBLP:journals/ijcysa/StevanovicP16}. Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation mit dem C\&C-Server sowie den Angriffsverkehr anhand von
+TCP, UDP und DNS zu erkennen. Die Erkennung basiert auf supervised Machine Learning um bestimmte Muster zu identifizieren. Das komplette System besteht aus insgesamt drei Komponenten: die Verarbeitung,
+Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet durch Analyse und Extraktion anhand von statistischen Funktionen. Um z.B. TCP und UDP Verkehr zu 
+analysieren, verwenden Stevanovic und Pedersen Geolokalisierungsinformationen. Abbildung \ref{fig:stats_features} zeigt eine Liste mit den extrahierten Informationen aus TCP und UDP.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{./pictures/statistic_features.png}
+    \caption{TCP und UDP Informationen statistisch zusammengefasst (übernommen von \cite{DBLP:journals/ijcysa/StevanovicP16}).}
+    \label{fig:stats_features}
+\end{figure}
+
+Die Botnetz Erkennung nach den unterschiedlichen Methoden und Techniken soll mehr Geräte vor der illegalen Verwendung von Botnetzen schützen. 
 
 \subsection*{Angriffsmöglichkeiten zum Testen}
 Um den Prozess der Botnetz Erkennung durch Fallstudien zu testen, sollen in der Dissertation verschiedene Botnetze Verwendung finden und alle drei Phasen durchführen. Dabei sollen bereits bekannte
 Botnetze implementiert und ausgeführt werden. Zusätzlich soll ein Botnetz implementiert werden um Herauszufinden, ob das System auch neue, unbekannte Botnetze erkennt. Der Fokus bei den Botnetzen 
-soll auch weiterhin im IoT Bereich liegen. Kolias et al. \cite{DBLP:journals/computer/KoliasKSV17} weisen in ihrer Arbeit neben Mirai auf die Botnetze Hajime und BricketBot hin die in der Dissertation
-für die Botnetzerkennung ausgeführt werden sollen. Nach Kolias et al. besteht Mirai aus vier Komponenten, dem \textit{Bot}, dem \textit{C\&C-Server}, der \textit{loader} und der \textit{report Server}. 
+soll auch weiterhin im IoT Bereich liegen. Kolias et al. \cite{DBLP:journals/computer/KoliasKSV17} weisen in ihrer Arbeit neben Mirai auf das Botnetz Hajime hin, welches in der Dissertation
+für die Botnetzerkennung ausgeführt werden soll. Nach Kolias et al. besteht Mirai aus vier Komponenten, dem \textit{Bot}, dem \textit{C\&C-Server}, der \textit{loader} und der \textit{report Server}. 
 Der \textit{Bot} und \textit{C\&C-Server} weichen nicht von der allgemeinen Funktionsweise ab, wie in \ref{sec:theory} erklärt. Der \textit{loader} übernimmt die Kommunikation mit neuen infizierten 
 Geräten und verteilt direkt an sie ausführbare Dateien. Der \textit{report Server} verwaltet Informationen über alle Geräte im Botnetz über eine Datenbank und kommuniziert mit den neu infizierten Geräten. 
 Im folgenden Ablauf operiert und kommuniziert Mirai. 
@@ -58,7 +70,7 @@ und anhand des report Servers den aktuellen Status des Botnetzes. Anhand der Inf
 dem Gerät ausgeführt werden und schließt sowohl Secure Shell (SSH), als auch Telnet Programme. Der neue Bot bekommt über eine Domäne vom C\&C-Server nun mögliche Angriffsbefehle. Den initialen Prozess 
 der Suche nach offenen Ports führt auch Hajime durch. Hajime ist ein Peer-to-Peer Netzwerk, welches auf BitTorrent's Distributed Hash Table (DHT) aufbaut \cite{DBLP:conf/ndss/HerwigHHRL19,2017AnalyzingTP}. 
 BitTorrent nutzt das Kademlia Protokoll \cite{DBLP:conf/iptps/MaymounkovM02} und zusätzlich zur direkten Peer-to-Peer Kommunikation nutzt Hajime zusätzlich das uTorrent Transport Protocol. Für weitere
-technische Erläuterungen zu Hajime, analysieren \cite{DBLP:conf/ndss/HerwigHHRL19} die Phasen des Botnetzes.
+technische Erläuterungen zu Hajime, analysieren \cite{DBLP:conf/ndss/HerwigHHRL19} die Phasen des Botnetzes. 
 
 % - Ein ML Modell implementieren was via SDN ein IoT Netzwerk überwacht
 % - Das ganze z.B. mit Mirai testen in einem Labor
