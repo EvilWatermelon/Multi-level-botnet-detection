@@ -43,8 +43,8 @@ DGA-basierte Technik durch. Mit dieser Technik soll zwischen algorithmischen bö
 versuchen die aktuelleren Technikansätze, anstatt C\&C-Server zu identifizieren, infizierte Geräte zu erkennen. \\ Die Umsetzung mit mehreren Erkennungsstufen erklären Stevanovic und Pedersen 
 \cite{DBLP:journals/ijcysa/StevanovicP16}. Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation mit dem C\&C-Server sowie den Angriffsverkehr anhand von
 TCP, UDP und DNS zu erkennen. Die Erkennung basiert auf supervised Machine Learning um bestimmte Muster zu identifizieren. Das komplette System besteht aus insgesamt drei Komponenten: die Verarbeitung,
-Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet durch Analyse und Extraktion anhand von statistischen Funktionen. Um z.B. TCP und UDP Verkehr zu 
-analysieren, verwenden Stevanovic und Pedersen Geolokalisierungsinformationen. Abbildung \ref{fig:stats_features} zeigt eine Liste mit den extrahierten Informationen aus TCP und UDP.
+Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet durch Analyse und Extraktion anhand von statistischen Funktionen. Abbildung \ref{fig:stats_features} 
+zeigt eine Liste mit den extrahierten Informationen aus TCP und UDP. 
 
 \begin{figure}[h!]
     \centering
@@ -53,7 +53,17 @@ analysieren, verwenden Stevanovic und Pedersen Geolokalisierungsinformationen. A
     \label{fig:stats_features}
 \end{figure}
 
-Die Botnetz Erkennung nach den unterschiedlichen Methoden und Techniken soll mehr Geräte vor der illegalen Verwendung von Botnetzen schützen. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{./pictures/statistic_dns.png}
+    \caption{DNS Informationen statistisch zusammengefasst (übernommen von \cite{DBLP:journals/ijcysa/StevanovicP16}).}
+    \label{fig:stats_dns}
+\end{figure}
+
+Bei der DNS Analyse werden Fully Qualified Domain Names (FQDN) beobachtet und für jeden FQDN, statistische Eigenschaften extrahiert, welche in Abbildung \ref{fig:stats_dns} aufgelistet sind. Zur 
+Klassifizierung nutzt die Botnetz Erkennung einen Random Forest Classifier um dann über eine Client entitäten Analyse einen Report zu erstellen über infizierte Geräte. Für die Dissertation sollen 
+wie bei Stevanovic und Pedersen auch mehrere Stufen zur Erkennung von Botnetzen eingesetzt werden. Das daraus resultierende Ziel erklärt Kapitel \ref{sec:goals} ausführlicher.
+Die Botnetz Erkennung nach den unterschiedlichen Methoden und Techniken mit mehrere Stufen soll mehr Geräte vor der illegalen Verwendung von Botnetzen schützen. 
 
 \subsection*{Angriffsmöglichkeiten zum Testen}
 Um den Prozess der Botnetz Erkennung durch Fallstudien zu testen, sollen in der Dissertation verschiedene Botnetze Verwendung finden und alle drei Phasen durchführen. Dabei sollen bereits bekannte
@@ -73,15 +83,11 @@ BitTorrent nutzt das Kademlia Protokoll \cite{DBLP:conf/iptps/MaymounkovM02} und
 technische Erläuterungen zu Hajime, analysieren \cite{DBLP:conf/ndss/HerwigHHRL19} die Phasen des Botnetzes. 
 
 % - Ein ML Modell implementieren was via SDN ein IoT Netzwerk überwacht
-% - Das ganze z.B. mit Mirai testen in einem Labor
 % - Laborexperiment
 % - ML Modell -> Vielleicht Unsupervised Learning, passenden Algorithmus raussuchen (basierend auf den besten Erkennungsmethoden durch ML)
 % - Das Paper im Auge behalten für entsprechende Begriffe
 % - WAS IST DAS ZIEL? - Welche Ergebnisse will ich am Ende haben?
 % - Ist ein Zusammenhang wichtig, wofür das Botnet verwendet werden soll?
-% - Ich will die Erkennung von Botnetzen verbessen (Ergebnisse sollen darauf beruhen) - Wurde die Erkennung durch meine Diss verbessert?
-% - Mehrere Level der Erkennung während jeder Botnetzphase
+% - Ich will die Erkennung von Botnetzen verbessern (Ergebnisse sollen darauf beruhen) - Wurde die Erkennung durch meine Diss verbessert?
 % - Im aktuellen Stand der Forschung auf die Hauptgebiete aus der Einführung eingehen
-% - sus Stevanovic und Pedersen
-% - Mirai, Hajime, BrickerBot
 % - Es geht hierbei nur um die Erkennung, keine Maßnahmen und keine Verteidigung (vielleicht am Ende).

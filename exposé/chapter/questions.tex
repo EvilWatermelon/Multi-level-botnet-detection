@@ -1,23 +1,30 @@
-\section{Forschungsfragen}
-\subsection*{Forschungsfragen}
+\section{Forschungsfragen und Aufbau des Exposés}
+
+Botnetze im Internet of Things (IoT) Gebiet haben in der modernen Welt sehr stark an Bedeutung gewonnen. Gerade im privaten 
+Haushalt finden sich immer mehr IoT-Geräte die durch Botnetze wie Mirai und Hajime infiziert werden können. Daher ist es 
+sehr wichtig, dass diese Botnetze durch eine Erkennung identifiziert und abgewehrt werden. Die Dissertation soll sich mit 
+der Erkennung von Botnetzen beschäftigen und die Identifikation optimieren.
+
+\subsection*{Forschungsfragen für die Dissertation}
 
 \newlist{questions}{enumerate}{2}
 \setlist[questions,1]{label=\textsf{\textbf{Q\arabic*:}},ref=RQ\arabic*}
 \setlist[questions,2]{label=(\alph*),ref=\thequestionsi(\alph*)}
 
+Die Dissertation soll spezifisch die folgenden Forschungsfragen beantworten:  
+
 \begin{questions}
-    \item Wie lassen sich Botnetze während der Verbreitungsphase erkennen?
-    \item Wie lassen sich Botnetze während der Scan-Phase erkennen?
-    \item Welche Erkennungsindikatoren führen zu einer Verbesserung der Erkennung von Botnetzen?
-    \item Welche Kombination von Erkennungsstufen führt zu einer Verbesserung der Erkennung von Botnetzen?
+    \item Wie lassen sich Botnetze während der Verbreitungsphase erkennen? \label{itm:q1}
+    \item Wie lassen sich Botnetze während der Scan-Phase erkennen? \label{itm:q2}
+    \item Welche Kombinationen von bereits bekannten Methoden führen zu einer Verbesserung der Erkennung von Botnetzen? \label{itm:q3}
+    \item Welche Kombinationen von bereits bekannten Techniken führen zu einer Verbesserung der Erkennung von Botnetzen? \label{itm:q4}
+    \item Wie lässt sich die Erkennung von Botnetzen optimieren, wenn mehrere Erkennungsstufen verwendet werden? \label{itm:q5}
 \end{questions}
 
-\subsection*{Hypothesen}
-
-\newlist{hypotheses}{enumerate}{2}
-\setlist[hypotheses,1]{label=\textsf{\textbf{H\arabic*:}},ref=H\arabic*}
-\setlist[hypotheses,2]{label=(\alph*),ref=\thehypothesesi(\alph*)}
-
-\begin{hypotheses}
-    \item
-\end{hypotheses}
+In Frage \ref{itm:q1} und \ref{itm:q2} soll es um die Erkennung von Botnetzen während der ersten beiden Phasen gehen. Was die Phasen sind erklärt das nachfolgende Kapitel. 
+\\ \\
+In den folgenden Kapitel \ref{sec:theory} werden die theoretischen Hintergründe zum Thema der Dissertation und verschiedene Prozesse zur Erkennung von Botnetzen, sowie 
+mehrere Botnetze die in Fallstudien eingesetzt werden sollen beschrieben. Kapitel \ref{sec:research} erläutert den aktuellen Stand der Forschung zur Erkennung von Botnetzen,
+sowie zu den Themen die in der Dissertation behandelt werden sollen. In Kapitel \ref{sec:goals} werden die Ziele der Dissertation aufgestellt. Das Kapitel \ref{sec:methods}
+erklärt wie in der Dissertation vorgegangen werden soll, um ein Konzept mit einer dazugehörigen Implementierung zu erstellen sowie den geplanten Aufbau eines Laborexperiments
+und mögliche Fallstudien. Das letzte Kapitel \ref{sec:plan} stellt einen Zeitplan vor sowie die Struktur, die die Dissertation haben soll.
