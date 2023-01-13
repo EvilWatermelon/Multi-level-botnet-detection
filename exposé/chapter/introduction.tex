@@ -40,7 +40,7 @@ Basis von verschiedenen Parametern statt, wobei eine Aufteilung des Verkehrs in 
 anomalien im Netzwerkverkehr zu finden, die sich vom regulären Verkehr unterscheiden. Über die Flussmittel-basierte Technik werden im Netzwerkverkehr IP-Flüsse gefunden. Dabei wird darauf 
 geachtet, wie sich die IP-Larte verändert, welche in Relation zur einer Domäne steht und einen niedrigen Time To Live (TTL)-Wert hat. Die Konzentrationen auf abgefragte Domänen führt die 
 DGA-basierte Technik durch. Mit dieser Technik soll zwischen algorithmischen bösartig erzeugten und gutartigen Domänen differentiert werden. Nach dem Stand von \cite{DBLP:journals/compsec/SinghSK19} 
-versuchen die aktuelleren Technikansätze, anstatt C\&C-Server zu identifizieren, infizierte Geräte zu erkennen. \\ Die Umsetzung mit mehreren Erkennungsstufen erklären Stevanovic und Pedersen 
+versuchen die aktuelleren Technikansätze, anstatt C\&C-Server zu identifizieren, infizierte Geräte zu erkennen. \\ Die Umsetzung über mehrere Erkennungslevel erklären Stevanovic und Pedersen 
 \cite{DBLP:journals/ijcysa/StevanovicP16}. Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation mit dem C\&C-Server sowie den Angriffsverkehr anhand von
 TCP, UDP und DNS zu erkennen. Die Erkennung basiert auf supervised Machine Learning um bestimmte Muster zu identifizieren. Das komplette System besteht aus insgesamt drei Komponenten: die Verarbeitung,
 Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet durch Analyse und Extraktion anhand von statistischen Funktionen. Abbildung \ref{fig:stats_features} 
@@ -62,8 +62,8 @@ zeigt eine Liste mit den extrahierten Informationen aus TCP und UDP.
 
 Bei der DNS Analyse werden Fully Qualified Domain Names (FQDN) beobachtet und für jeden FQDN, statistische Eigenschaften extrahiert, welche in Abbildung \ref{fig:stats_dns} aufgelistet sind. Zur 
 Klassifizierung nutzt die Botnetz Erkennung einen Random Forest Classifier um dann über eine Client entitäten Analyse einen Report zu erstellen über infizierte Geräte. Für die Dissertation sollen 
-wie bei Stevanovic und Pedersen auch mehrere Stufen zur Erkennung von Botnetzen eingesetzt werden. Das daraus resultierende Ziel erklärt Kapitel \ref{sec:goals} ausführlicher.
-Die Botnetz Erkennung nach den unterschiedlichen Methoden und Techniken mit mehrere Stufen soll mehr Geräte vor der illegalen Verwendung von Botnetzen schützen. 
+wie bei Stevanovic und Pedersen auch mehrere Level zur Erkennung von Botnetzen eingesetzt werden. Das daraus resultierende Ziel erklärt Kapitel \ref{sec:goals} ausführlicher.
+Die Botnetz Erkennung nach den unterschiedlichen Methoden und Techniken mit mehrere Level soll mehr Geräte vor der illegalen Verwendung von Botnetzen schützen. 
 
 \subsection*{Angriffsmöglichkeiten zum Testen}
 Um den Prozess der Botnetz Erkennung durch Fallstudien zu testen, sollen in der Dissertation verschiedene Botnetze Verwendung finden und alle drei Phasen durchführen. Dabei sollen bereits bekannte
