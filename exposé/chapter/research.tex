@@ -7,5 +7,14 @@ Wazzan et al. \cite{Wazzan2021InternetOT} schlägt die Kombination mehrerer Tech
 Daher sollen neben der Erkennung über ML auch weitere Technologien mitbetrachtet werden. Wazzan et al. fasst anhand verschiedener Studien folgende 
 weitere Technologien zusammen: Software Defined Network (SDN), Edge Computing, Blockchain, Fog Computing und Network Function Virtualization (NFV). 
 Im folgenden wird der aktuelle Stand der Forschung zu jeder dieser Technologien betrachtet. \\ \\ Zha et al. \cite{DBLP:conf/cns/Zha0GMC19} beschreiben 
-eine Bibliothek, welche Botnetz Erkennung anhand eines SDNs durchführt. Zusätzlich zu dem beschriebenen Framework, erläutern Chen et al. \cite{Chen2017BotGuardLR}
-ein weiteres Framework unter der Verwendung von SDNs.
+eine Bibliothek, welche Botnetz Erkennung anhand eines SDNs durchführt. Bei dem Konzept des Frameworks handelt es sich darum, Botnetz und C&C-Kanal Aktivitäten 
+zu identifizieren, damit die Robustheit der Erkennung erhöht wird. Zum Aufbau gehört ein SDN Controller, welcher ein ML Modell enthält, dass über Erkennung und 
+Überwachung trainiert. Die Überwachung des Netzwerks, findet über Software Switches statt, welche vollen Zugang zum Netzwerkverkehr von Virtuellen Maschinen (VM) haben.
+Das ML Modell wird für das komplette Netzwerk verwendet um Bot Aktivitäten zu erkennen, während für einzelne Server, dessen VMs mit einem Software Switch kommunizieren, 
+lokale Netzwerküberwachung stattfindet. Über die einzelnen Software Switches, findet die C\&C Identifizierung statt. Dabei ist speziell Peer-to-Peer Verkehr, HTTP und IRC
+Protokolle im Fokus. Das ML Modell ist ein Neuronales Netzwerk (NN), welches kompromitierte Hosts findet anhand von aufgebauten Verbindungen des Hosts. Die Entscheidung, ob ein 
+Host zu einem Bot wird, entscheidet das NN über einen festgelegten Schwellenwert. Mit einer einzelnen positiven Identifizierung ist aber dennoch nicht eindeutig geklärt, dass der
+Host auch wirklich ein Bot ist, da er z.B. nicht unbedingt mit dem C\&C-Server kommuniziert. An dieser Stelle wird der Host dennoch dauerhaft weiter beobachtet. An dieser Stelle
+zeigt der aktuelle Stand Forschung, dass die Erkennung nichts während der Scan-Phase durchführt. Damit ergibt sich ein Ziel, was in der Dissertation verfolgt werden soll und weiter
+in Kapitel \ref{sec:goals} erläutert wird. 
+Zusätzlich zu dem beschriebenen Framework, erläutern Chen et al. \cite{Chen2017BotGuardLR} ein weiteres Framework unter der Verwendung von SDNs. 
