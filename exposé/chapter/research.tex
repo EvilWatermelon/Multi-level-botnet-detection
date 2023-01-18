@@ -2,10 +2,9 @@
 \label{sec:research}
 
 Im Zusammenhang mit der Botnetzerkennung findet ein Großteil der Forschung zu diesem Gebiet im Zusammenhang mit Maschinellem Lernen (ML) statt wie
-unter anderem zum Beispiel \cite{SAlrayes2022ModelingOB,DBLP:journals/comcom/Alani22,Habtamu2022ASR} zeigen.
-Wazzan et al. \cite{Wazzan2021InternetOT} schlägt die Kombination mehrerer Technologien vor womit sich die Dissertation auch beschäftigen soll.
-Daher sollen neben der Erkennung über ML auch weitere Technologien mitbetrachtet werden. Wazzan et al. fasst anhand verschiedener Studien folgende 
-weitere Technologien zusammen: Software Defined Network (SDN), Edge Computing, Blockchain, Fog Computing und Network Function Virtualization (NFV). 
+unter anderem zum Beispiel \cite{SAlrayes2022ModelingOB,DBLP:journals/comcom/Alani22,Habtamu2022ASR} zeigen. Wazzan et al. \cite{Wazzan2021InternetOT} schlägt die Kombination 
+mehrerer Technologien vor womit sich die Dissertation auch beschäftigen soll. Daher sollen neben der Erkennung über ML auch weitere Technologien mitbetrachtet werden. Wazzan et al. 
+fassen anhand verschiedener Studien folgende weitere Technologien zusammen: Software Defined Network (SDN), Edge Computing, Blockchain, Fog Computing und Network Function Virtualization (NFV). 
 Im folgenden wird der aktuelle Stand der Forschung zu jeder dieser Technologien betrachtet. \\ \\ Zha et al. \cite{DBLP:conf/cns/Zha0GMC19} beschreiben 
 eine Bibliothek, welche Botnetz Erkennung anhand eines SDNs durchführt. Bei dem Konzept des Frameworks handelt es sich darum, Botnetz und C\&C-Kanal Aktivitäten 
 zu identifizieren, damit die Robustheit der Erkennung erhöht wird. Zum Aufbau gehört ein SDN Controller, welcher ein ML Modell enthält, dass über Erkennung und 
@@ -17,5 +16,10 @@ Host zu einem Bot wird, entscheidet das NN über einen festgelegten Schwellenwer
 Host auch wirklich ein Bot ist, da er z.B. nicht unbedingt mit dem C\&C-Server kommuniziert. An dieser Stelle wird der Host dennoch dauerhaft weiter beobachtet. An dieser Stelle
 zeigt der aktuelle Stand Forschung, dass die Erkennung nichts während der Scan-Phase durchführt. Damit ergibt sich ein Ziel, was in der Dissertation verfolgt werden soll und weiter
 in Kapitel \ref{sec:goals} erläutert wird. Zusätzlich zu dem beschriebenen Framework, erläutern Chen et al. \cite{Chen2017BotGuardLR} ein weiteres Framework unter der Verwendung von 
-SDNs. \\ \\ Neben der Erkennung mit SDNs findet in der aktuellen Forschung auch die Erkennung von Botnetzen über Edge Computing Architekturen statt wie \cite{gromov2022edge} in ihrer
-Arbeit zeigen.
+SDNs. \\ \\ Neben der Erkennung mit SDNs findet in der aktuellen Forschung auch die Erkennung von Botnetzen über Edge Computing Architekturen statt, wie \cite{gromov2022edge} in ihrer
+Arbeit zeigen. \\ \\ Bei der Blockchain basierten Erkennung geht es darum eine Blockchain zu implementieren und in diesem Netzwerk ein IoT Netzwerk auf Botnetze zu überwachen. Dabei 
+werden unterschiedliche Methoden innerhalb der Blockchain implementiert und mit den Vorteilen der Blockchain verwendet. Sagirlar et al. \cite{DBLP:journals/corr/abs-1809-10775} nutzen
+diese Methode indem sie innerhalb der Blockchain eine Peer-to-Peer Botnetz Erkennung implementieren. Salim et al. \cite{DBLP:journals/sensors/SalimATPP22} erläutern ein Framework, welches 
+Digital Twins und Packet Auditor in einer Blockchain zur Erkennung einsetzen. 
+
+% - black und whitelisting fällt immer wieder auf bei der Erkennung in Zha et al. und 
