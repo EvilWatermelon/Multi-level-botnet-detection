@@ -4,8 +4,8 @@
 Im Zusammenhang mit der Botnetzerkennung findet ein Großteil der Forschung zu diesem Gebiet im Zusammenhang mit Maschinellem Lernen (ML) statt wie
 unter anderem zum Beispiel \cite{SAlrayes2022ModelingOB,DBLP:journals/comcom/Alani22,Habtamu2022ASR} zeigen. Wazzan et al. \cite{Wazzan2021InternetOT} schlägt die Kombination 
 mehrerer Technologien vor womit sich die Dissertation auch beschäftigen soll. Daher sollen neben der Erkennung über ML auch weitere Technologien mitbetrachtet werden. Wazzan et al. 
-fassen anhand verschiedener Studien folgende weitere Technologien zusammen: Software Defined Network (SDN), Edge Computing, Blockchain, Fog Computing und Network Function Virtualization (NFV). 
-Im folgenden wird der aktuelle Stand der Forschung zu jeder dieser Technologien betrachtet. \\ \\ Zha et al. \cite{DBLP:conf/cns/Zha0GMC19} beschreiben 
+fassen anhand verschiedener Studien folgende weitere Technologien und Architekturen zusammen: Software Defined Network (SDN), Edge Computing, Blockchain, Fog Computing und Network 
+Function Virtualization (NFV). Im folgenden wird der aktuelle Stand der Forschung zu jeder dieser Technologien betrachtet. \\ \\ Zha et al. \cite{DBLP:conf/cns/Zha0GMC19} beschreiben 
 eine Bibliothek, welche Botnetz Erkennung anhand eines SDNs durchführt. Bei dem Konzept des Frameworks handelt es sich darum, Botnetz und C\&C-Kanal Aktivitäten 
 zu identifizieren, damit die Robustheit der Erkennung erhöht wird. Zum Aufbau gehört ein SDN Controller, welcher ein ML Modell enthält, dass über Erkennung und 
 Überwachung trainiert. Die Überwachung des Netzwerks, findet über Software Switches statt, welche vollen Zugang zum Netzwerkverkehr von Virtuellen Maschinen (VM) haben.
@@ -13,16 +13,19 @@ Das ML Modell wird für das komplette Netzwerk verwendet um Bot Aktivitäten zu 
 lokale Netzwerküberwachung stattfindet. Über die einzelnen Software Switches, findet die C\&C Identifizierung statt. Dabei ist speziell Peer-to-Peer Verkehr, HTTP und IRC
 Protokolle im Fokus. Das ML Modell ist ein Neuronales Netzwerk (NN), welches kompromitierte Hosts findet anhand von aufgebauten Verbindungen des Hosts. Die Entscheidung, ob ein 
 Host zu einem Bot wird, entscheidet das NN über einen festgelegten Schwellenwert. Mit einer einzelnen positiven Identifizierung ist aber dennoch nicht eindeutig geklärt, dass der
-Host auch wirklich ein Bot ist, da er z.B. nicht unbedingt mit dem C\&C-Server kommuniziert. An dieser Stelle wird der Host dennoch dauerhaft weiter beobachtet. An dieser Stelle
-zeigt der aktuelle Stand Forschung, dass die Erkennung nichts während der Scan-Phase durchführt. Damit ergibt sich ein Ziel, was in der Dissertation verfolgt werden soll und weiter
-in Kapitel \ref{sec:goals} erläutert wird. Zusätzlich zu dem beschriebenen Framework, erläutern Chen et al. \cite{Chen2017BotGuardLR} ein weiteres Framework unter der Verwendung von 
-SDNs. \\ \\ Neben der Erkennung mit SDNs findet in der aktuellen Forschung auch die Erkennung von Botnetzen über Edge Computing Architekturen statt, wie \cite{gromov2022edge} in ihrer
-Arbeit zeigen. \\ \\ Bei der Blockchain basierten Erkennung geht es darum eine Blockchain zu implementieren und in diesem Netzwerk ein IoT Netzwerk auf Botnetze zu überwachen. Dabei 
-werden unterschiedliche Methoden innerhalb der Blockchain implementiert und mit den Vorteilen der Blockchain verwendet. Sagirlar et al. \cite{DBLP:journals/corr/abs-1809-10775} nutzen
-diese Methode indem sie innerhalb der Blockchain eine Peer-to-Peer Botnetz Erkennung implementieren. Salim et al. \cite{DBLP:journals/sensors/SalimATPP22} erläutern ein Framework, welches 
-Digital Twins und Packet Auditor in einer Blockchain zur Erkennung einsetzen. \\ \\ Neben Blockchains wird auch Fog Computing zur Botnetzerkennung eingesetzt. \cite{Lawal2020AnAM} stellen 
-ein Framework vor, welches Anomalien in einem IoT Netzwerk erkennt, aufgebaut als Fog Computing Architektur, anhand von signatur- und anomaliebasierten Erkennungsmethoden. Die signaturbasierte 
-Methode greift auf eine Datenbank zu, welche IP Adressen enthält die als Angriffsursprung identifiziert sind. Die Anomaliebasierte Methode klassifiziert anhand eines Extreme Gradient Booster Algorithmus 
-\cite{DBLP:journals/corr/ChenG16} zwischen auffälligem und unauffälligem Netzwerkverkehr.
+Host auch wirklich ein Bot ist, da er z.B. nicht unbedingt mit dem C\&C-Server kommuniziert. An dieser Stelle wird der Host dennoch dauerhaft weiter beobachtet.
+Der aktuelle Stand Forschung zeigt hier, dass die Erkennung nicht während der Scan-Phase durchführt wird, womit sich ein Ziel ergibt Botnetzerkennung in frühen Botnetzphase durchzuführen,
+was in der Dissertation verfolgt werden soll und weiter in Kapitel \ref{sec:goals} erläutert wird. Zusätzlich zu dem beschriebenen Framework, erläutern Negera et al. \cite{DBLP:journals/sensors/NegeraSDMA22}
+verschiedene Arbeiten zur Erkennung von Botnetzen in SDNs über Modelle des ML. \\ \\ Neben der Erkennung mit SDNs findet in der aktuellen Forschung auch die Erkennung von Botnetzen über Edge Computing Architekturen 
+statt, wie \cite{gromov2022edge} in ihrer Arbeit zeigen. Bei dieser Erkennung verwenden Gromov et al. in einem Edge Computing System ein Convolutional Neural Network (CNN). Der Netzwerkverkehr der einzelnen IoT-Geräte
+wird an ein NVIDIA Jetson Nano Entwickler Kit zur Botnetzerkennung geleitet. Dabei werden anhand von Computer Vision Bilder zur Erkennung erzeugt, welche in auffällige und unauffällige Bilder klassifiziert werden um 
+die Performance zu erhöhen sowie das Netzwerk zu verkleinern. 
+\\ \\ Bei der Blockchain basierten Erkennung geht es darum eine Blockchain zu implementieren und in diesem Netzwerk ein IoT Netzwerk auf Botnetze zu überwachen. Dabei werden unterschiedliche Methoden innerhalb der Blockchain 
+implementiert und mit den Vorteilen der Blockchain verwendet. Sagirlar et al. \cite{DBLP:journals/corr/abs-1809-10775} nutzen diese Methode indem sie innerhalb der Blockchain eine Peer-to-Peer Botnetz Erkennung implementieren. 
+Salim et al. \cite{DBLP:journals/sensors/SalimATPP22} erläutern ein Framework, welches Digital Twins und Packet Auditor in einer Blockchain zur Erkennung einsetzen. \\ \\ Neben Blockchains wird auch Fog Computing zur 
+Botnetzerkennung eingesetzt. \cite{Lawal2020AnAM} stellen ein Framework vor, welches Anomalien in einem IoT Netzwerk erkennt, aufgebaut als Fog Computing Architektur, anhand von signatur- und anomaliebasierten Erkennungsmethoden. 
+Die signaturbasierte Methode greift auf eine Datenbank zu, welche IP Adressen enthält die als Angriffsursprung identifiziert sind. Die anomaliebasierte Methode klassifiziert anhand eines Extreme Gradient Booster 
+(XGBoost) Algorithmus \cite{DBLP:journals/corr/ChenG16} zwischen auffälligem und unauffälligem Netzwerkverkehr. Der Netzwerkverkehr fließt zu Beginn durch ein signaturbasiertes IDS um die 
+IP Adresse mit der Datenbank zu vergleichen. Sollte nichts gefunden werden, fließt der Verkehr durch ein anomaliebasiertes IDS und klassifiziert ihn entsprechend. 
 
 % - black und whitelisting fällt immer wieder auf bei der Erkennung in Zha et al. und 
