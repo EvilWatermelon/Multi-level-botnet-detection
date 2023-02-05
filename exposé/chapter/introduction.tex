@@ -4,10 +4,9 @@
 Internet of Things (IoT) ist ein Gebiet, welches dem Alltag viele Vorteile bringt. Durch die Möglichkeit
 Geräte aus dem Alltag mit dem Internet zu verbinden, birgt IoT aber auch Sicherheitslücken die besagte Geräte sehr Gefährlich
 werden lässt. Um dem entgegen zu wirken soll sich die Dissertation im Gebiet der Malwareforschung befinden. Im speziellen soll es dabei um 
-die Erkennung von Botnetzen gehen, welche Angriffe über IoT-Geräte ausführen. \\
-Ein Botnetz ist der Zusammenschluss von Hosts, auch Bots oder Zombies genannt, gesteuert von einem Angreifer, auch Botmaster genannt in einem 
-Overlay-Netzwerk \cite{Xing2021SurveyOB}. Die Botnetze nutzen Zero-day Schwachstellen, Peer-2-Peer Netze, Phishing Angriffe, Anonyme Netzwerke,
-Blockchain Netzwerke und Stromnetze zur Verbreitung und ihrer Verwendungszwecke \cite{DBLP:conf/cycon/CasenoveM14,DBLP:conf/esorics/KurtECAU20}. Auf Basis der Architektur 
+die Erkennung von Botnetzen gehen, welche Angriffe über IoT-Geräte ausführen. \\ Ein Botnetz ist der Zusammenschluss von Hosts, auch Bots oder Zombies genannt, gesteuert von einem Angreifer, 
+auch Botmaster genannt in einem Overlay-Netzwerk \cite{Xing2021SurveyOB}. Die Botnetze nutzen Zero-day Schwachstellen, Peer-2-Peer Netze, Phishing Angriffe, Anonyme Netzwerke,
+Blockchain Netzwerke und Stromnetze zur Verbreitung für ihre Verwendungszwecke \cite{DBLP:conf/cycon/CasenoveM14,DBLP:conf/esorics/KurtECAU20}. Auf Basis der Architektur 
 des Botnetzes findet zu jeder Zeit ein Kommunikations- und Kontrollprozess mit dem Command und Control (C\&C)-Server statt. Der C\&C-Server gibt den Bots Befehle die 
 diese dann durchführen \cite{SCHILLER200729} zum Beispiel, über das Internet Relay Chat (IRC)-Protokoll. \\ Botnetze durchlaufen drei Phasen wie Wazzan et al. 
 \cite{Wazzan2021InternetOT} beschreiben, scannen, ausbreiten und angreifen. Während der Scan-Phase sucht ein Bot nach vulnerablen IoT-Geräten und 
@@ -16,10 +15,9 @@ In der Ausbreitungs-Phase ist eine lauffähige Version des Bots installiert und 
 Um auf dem Gerät Malware zu verhindern die nicht vom Botnetz selbst ausgeführt wird, stoppt der Bot andere Prozesse um Ports für sich selbst zu blocken. 
 Daraufhin rekrutiert das bösartige Programm weitere Bots um das Botnetz so schnell wie möglich zu erweitern. In der Angriffs-Phase führt das Botnetz Angriffe wie Distributed Denial of 
 Service (DDoS), crypto mining und spam Angriffe aus. Die erläuterten Phasen beschreiben auch Studien wie 
-\cite{10.1007/978-3-030-33229-7_21, Alzahrani2020,DBLP:journals/computer/VlajicZ18,NGUYEN2020128}. \\
-Nach der Erläuterung wie Botnetze funktionieren wäre nun zu fragen, wie der Prozess eines Botnetzes erkennbar ist um IoT-Geräte entsprechend zu schützen. 
-Nach Xing et al. \cite{Xing2021SurveyOB} kann die Botnetz Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und abnormales Verhalten klassifiziert
-werden. Wie Abbildung \ref{fig:bot_det_met} zeigt, unterteilen diese Klassifikationen Methoden zur Erkennung. 
+\cite{10.1007/978-3-030-33229-7_21, Alzahrani2020,DBLP:journals/computer/VlajicZ18,NGUYEN2020128}. \\ Nach der Erläuterung wie Botnetze funktionieren wäre nun zu fragen, wie der Prozess eines 
+Botnetzes erkennbar ist um IoT-Geräte entsprechend zu schützen. Nach Xing et al. \cite{Xing2021SurveyOB} kann die Botnetz Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und 
+abnormales Verhalten klassifiziert werden. Wie Abbildung \ref{fig:bot_det_met} zeigt, unterteilen diese Klassifikationen Methoden zur Erkennung. 
 
 \begin{figure}[h!]
     \centering
