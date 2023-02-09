@@ -12,10 +12,10 @@ diese dann durchführen \cite{SCHILLER200729} zum Beispiel, über das Internet R
 \cite{Wazzan2021InternetOT} beschreiben, scannen, ausbreiten und angreifen. Während der Scan-Phase sucht ein Bot nach vulnerablen IoT-Geräten und 
 infiziert das Gerät entweder durch brute force Methoden oder durch Ausnutzen einer Schwachstelle.
 In der Ausbreitungs-Phase ist eine lauffähige Version des Bots installiert und auf Basis der Architektur des infizierten Geräts ausgeführt.
-Um auf dem Gerät Malware zu verhindern die nicht vom Botnetz selbst ausgeführt wird, stoppt der Bot andere Prozesse um Ports für sich selbst zu blocken. 
+Um auf dem Gerät Malware zu verhindern die nicht vom Bot selbst ausgeführt wird, stoppt der Bot andere Prozesse um Ports für sich selbst zu blocken. 
 Daraufhin rekrutiert das bösartige Programm weitere Bots um das Botnetz so schnell wie möglich zu erweitern. In der Angriffs-Phase führt das Botnetz Angriffe wie Distributed Denial of 
-Service (DDoS), crypto mining und spam Angriffe aus. Die erläuterten Phasen beschreiben auch Studien wie 
-\cite{10.1007/978-3-030-33229-7_21, Alzahrani2020,DBLP:journals/computer/VlajicZ18,NGUYEN2020128}. \\ Nach der Erläuterung wie Botnetze funktionieren wäre nun zu fragen, wie der Prozess eines 
+Service (DDoS), krypto mining und spam Angriffe aus. Die erläuterten Phasen arbeiten auch Studien wie 
+\cite{10.1007/978-3-030-33229-7_21, Alzahrani2020,DBLP:journals/computer/VlajicZ18,NGUYEN2020128} aus. \\ Nach der Erläuterung wie Botnetze funktionieren ist nun zu klären, wie der Prozess eines 
 Botnetzes erkennbar ist um IoT-Geräte entsprechend zu schützen. Nach Xing et al. \cite{Xing2021SurveyOB} kann die Botnetz Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und 
 abnormales Verhalten klassifiziert werden. Wie Abbildung \ref{fig:bot_det_met} zeigt, unterteilen diese Klassifikationen Methoden zur Erkennung. 
 
@@ -27,18 +27,19 @@ abnormales Verhalten klassifiziert werden. Wie Abbildung \ref{fig:bot_det_met} z
 \end{figure}
 
 Die \textit{Honeypot Analyse} erkennt Code Beispiele durch das Honeypot trapping was eine hohe Genauigkeit von bereits bekannten Botnetzen ermöglicht. Die Honeypot Methoden können
-verschlüsselten Netzwerkverkehr nur schlecht erkennen sowie unbekannte Botnetze. Bots die eigene Funktion zur Umgehung von Honeypots besitzen, können durch fehlende Benutzereingriffe
+verschlüsselten Netzwerkverkehr nur schlecht erkennen sowie unbekannte Botnetze. Bots die eigene Funktionen zur Umgehung von Honeypots besitzen, können durch fehlende Benutzereingriffe
 auch nicht von der \textit{Honeypot Analyse} erfasst werden. Weit verbreitet sind die Methoden Erkennung von \textit{Kommunikationssignaturen} anhand von Signaturen und Muster. Dabei 
 werden in Intrusion Detection Systems (IDS) Regeln für den Merkmalsabgleich hinterlegt um Botnetz aktivitäten zu identifizieren. Dadurch können IDS Botnetze mit bestimmten Merkmalen 
-erkennen, aber unbekannte Funktionen werden dabei nicht erkannt sowie auch Botnetze die Techniken zur Verschleierung von Code nutzen. Bei den Methoden die durch 
-\textit{abnormales Verhalten} ist die Idee, Hostverhalten oder Netzwerkverkehr Auffälligkeiten zwischen gutartigem und bösartigem Verhalten zu erkennen. Neben den erwähnten Methoden 
+erkennen, aber unbekannte Funktionen werden dabei nicht erkannt sowie auch Botnetze die Techniken zur Verschleierung von Code nutzen. Bei den Methoden durch Erkennung vom
+\textit{abnormales Verhalten} ist die Idee, Hostverhalten- oder Netzwerkverkehr Auffälligkeiten zwischen in gutartig und bösartig zu klassifizieren. Neben den erwähnten Methoden 
 erläutern Singh et al. \cite{DBLP:journals/compsec/SinghSK19} Techniken, zur Erkennung von Botnetzen. Singh et al. klassifizieren die Techniken in Flow-, Anomalie-, Flussmittel-, Domain Generation 
 Algorithm (DGA)-basierten \cite{DBLP:journals/jksucis/ManasrahKF22} und Bot infizierungs Erkennung. Bei der Flow-basierten Technik findet eine Klassifizierung des Netzwerkverkehrs auf 
 Basis von verschiedenen Parametern statt, wobei eine Aufteilung des Verkehrs in bösartig und gutartig stattfindet. Anhand von Parametern oder Mustern versucht die Anomalie-basierte Technik 
 anomalien im Netzwerkverkehr zu finden, die sich vom regulären Verkehr unterscheiden. Über die Flussmittel-basierte Technik werden im Netzwerkverkehr IP-Flüsse gefunden. Dabei wird darauf 
 geachtet, wie sich die IP-Larte verändert, welche in Relation zur einer Domäne steht und einen niedrigen Time To Live (TTL)-Wert hat. Die Konzentrationen auf abgefragte Domänen führt die 
-DGA-basierte Technik durch. Mit dieser Technik soll zwischen algorithmischen bösartig erzeugten und gutartigen Domänen differentiert werden. Nach dem Stand von \cite{DBLP:journals/compsec/SinghSK19} 
-versuchen die aktuelleren Technikansätze, anstatt C\&C-Server zu identifizieren, infizierte Geräte zu erkennen. \\ Die Umsetzung über mehrere Erkennungslevel erklären Stevanovic und Pedersen 
+DGA-basierte Technik durch. Mit dieser Technik soll zwischen algorithmischen bösartig erzeugten und gutartigen Domänen differenziert werden. Nach dem Stand von \cite{DBLP:journals/compsec/SinghSK19} 
+versuchen die aktuelleren Technikansätze, anstatt C\&C-Server zu identifizieren, infizierte Geräte zu erkennen. \\ Die Dissertation soll sich mit der Erkennung über mehrere Level beschäftigen.
+Konkret bedeutet es, die Verwendung mehrerer Techniken anhand einer Kombination aus mehreren Methoden. Die Umsetzung über mehrere Erkennungslevel erklären Stevanovic und Pedersen 
 \cite{DBLP:journals/ijcysa/StevanovicP16}. Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation mit dem C\&C-Server sowie den Angriffsverkehr anhand von
 TCP, UDP und DNS zu erkennen. Die Erkennung basiert auf supervised Machine Learning um bestimmte Muster zu identifizieren. Das komplette System besteht aus insgesamt drei Komponenten: die Verarbeitung,
 Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet durch Analyse und Extraktion anhand von statistischen Funktionen. Abbildung \ref{fig:stats_features} 
