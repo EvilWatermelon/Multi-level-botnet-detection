@@ -2,47 +2,50 @@
 \label{sec:research}
 
 \subsection*{Methoden zur Erkennung von Botnetzen}
-
-Xing et al. \cite{Xing2021SurveyOB} stellt eine zusammengefasste Unterteiltung von Methoden zur Botnetzerkennung vor. Dabei gehen sie aber nicht auf konkrete Methoden
-ein, wie \cite{Wazzan2021InternetOT}. Für den aktuellen Stand der Forschung, nutzt dieses Exposé deshalb die ausgearbeiteten Vorschläge aus Studien von \cite{Wazzan2021InternetOT}.
+% - SDN, Edge Computing etc. Referenz muss hierhin und einzelne Techniken noch erklärt werden
+Xing et al. \cite{Xing2021SurveyOB} stellt eine zusammengefasste Unterteilung von Methoden zur Botnetzerkennung vor. Dabei gehen sie aber nicht auf konkrete Methoden
+ein, wie \cite{Wazzan2021InternetOT}. Für den aktuellen Stand der Forschung nutzt dieses Exposé deshalb die ausgearbeiteten Vorschläge aus Studien von \cite{Wazzan2021InternetOT}.
 Im Zusammenhang mit der Botnetzerkennung findet ein Großteil der Forschung zu diesem Gebiet im Zusammenhang mit Maschinellem Lernen (ML) statt, wie unter anderem zum Beispiel
-\cite{SAlrayes2022ModelingOB,DBLP:journals/comcom/Alani22,Habtamu2022ASR} zeigen. Wazzan et al. \cite{Wazzan2021InternetOT} schlägt die Kombination 
+\cite{SAlrayes2022ModelingOB,DBLP:journals/comcom/Alani22,Habtamu2022ASR, D2022ARO} zeigen. Wazzan et al. \cite{Wazzan2021InternetOT} schlägt die Kombination 
 mehrerer Erkennungsmethoden vor, womit sich die Dissertation auch beschäftigen soll. Nach verschiedener Studien schlagen Wazzan et al. folgende Erkennungsmethoden vor: 
-Software Defined Network (SDN), Edge Computing, Blockchain, Fog Computing und Network Function Virtualization (NFV). Im folgenden wird der aktuelle Stand der Forschung zu jeder dieser 
+Software Defined Network (SDN), Edge Computing, Blockchain, Fog Computing und Network Function Virtualization (NFV). Im Folgenden wird der aktuelle Stand der Forschung zu jeder dieser 
 Technologien betrachtet. \\ \\ Zha et al. \cite{DBLP:conf/cns/Zha0GMC19} beschreiben eine Bibliothek, welche Botnetz Erkennung anhand eines SDNs durchführt. 
 Bei dem Konzept des Frameworks handelt es sich darum, Botnetz und C\&C-Kanal Aktivitäten zu identifizieren, damit die Robustheit der Erkennung erhöht wird. Zum Aufbau gehört ein SDN 
 Controller, welcher ein ML Modell enthält, dass über Erkennung und Überwachung trainiert. Die Überwachung des Netzwerks, findet über Software Switches statt, welche vollen Zugang zum 
-Netzwerkverkehr von Virtuellen Maschinen (VM) haben. Das ML Modell wird für das komplette Netzwerk verwendet um Bot Aktivitäten zu erkennen, während für einzelne Server, dessen VMs mit 
+Netzwerkverkehr von Virtuellen Maschinen (VM) haben. Das ML Modell wird für das komplette Netzwerk verwendet, um Bot Aktivitäten zu erkennen, während für einzelne Server, dessen VMs mit 
 einem Software Switch kommunizieren, lokale Netzwerküberwachung stattfindet. Über die einzelnen Software Switches, findet die C\&C Identifizierung statt. Dabei ist speziell Peer-to-Peer 
-Verkehr, HTTP und IRC Protokolle im Fokus. Das ML Modell ist ein Neuronales Netzwerk (NN), welches kompromitierte Hosts findet anhand von aufgebauten Verbindungen des Hosts. Die Entscheidung, 
+Verkehr, HTTP und IRC Protokolle im Fokus. Das ML Modell ist ein Neuronales Netzwerk (NN), welches kompromittierte Hosts findet anhand von aufgebauten Verbindungen des Hosts. Die Entscheidung, 
 ob ein Host zu einem Bot wird, entscheidet das NN über einen festgelegten Schwellenwert. Mit einer einzelnen positiven Identifizierung ist aber dennoch nicht eindeutig geklärt, dass der
-Host auch wirklich ein Bot ist, da er z.B. nicht unbedingt mit dem C\&C-Server kommuniziert. An dieser Stelle wird der Host dennoch dauerhaft weiter beobachtet. Der aktuelle Stand Forschung 
+Host auch wirklich ein Bot ist, da er zum Beispiel nicht unbedingt mit dem C\&C-Server kommuniziert. An dieser Stelle wird der Host dennoch dauerhaft weiter beobachtet. Der aktuelle Stand Forschung 
 zeigt hier, dass die Erkennung nicht während der Scan-Phase durchführt wird, womit sich ein Ziel ergibt Botnetzerkennung in frühen Botnetzphase durchzuführen, was in der Dissertation verfolgt 
-werden soll und weiter in Kapitel \ref{sec:goals} erläutert wird. Zusätzlich zu dem beschriebenen Framework, erläutern Negera et al. \cite{DBLP:journals/sensors/NegeraSDMA22} verschiedene Arbeiten 
+werden soll und weiter in Kapitel \ref{sec:goals} erläutert wird. Zusätzlich zu dem beschriebenen Framework erläutern Negera et al. \cite{DBLP:journals/sensors/NegeraSDMA22} verschiedene Arbeiten 
 zur Erkennung von Botnetzen in SDNs über Modelle des ML. \\ \\ Neben der Erkennung mit SDNs findet in der aktuellen Forschung auch die Erkennung von Botnetzen über Edge Computing Architekturen 
 statt, wie \cite{gromov2022edge} in ihrer Arbeit zeigen. Bei dieser Erkennung verwenden Gromov et al. in einem Edge Computing System ein Convolutional Neural Network (CNN). Der Netzwerkverkehr der 
 einzelnen IoT-Geräte wird an ein NVIDIA Jetson Nano Entwickler Kit zur Botnetzerkennung geleitet. Dabei werden anhand von Computer Vision Bilder zur Erkennung erzeugt, welche in auffällige und 
-unauffällige Bilder klassifiziert werden um die Performance zu erhöhen sowie das Netzwerk zu verkleinern. \\ \\ Bei der Blockchain basierten Erkennung geht es darum eine Blockchain zu implementieren 
+unauffällige Bilder klassifiziert werden, um die Performance zu erhöhen sowie das Netzwerk zu verkleinern. \\ \\ Bei der Blockchainbasierten Erkennung geht es darum, eine Blockchain zu implementieren 
 und in diesem Netzwerk ein IoT Netzwerk auf Botnetze zu überwachen. Dabei werden unterschiedliche Methoden innerhalb der Blockchain implementiert und mit den Vorteilen der Blockchain verwendet. 
 Sagirlar et al. \cite{DBLP:journals/corr/abs-1809-10775} nutzen diese Methode indem sie innerhalb der Blockchain eine Peer-to-Peer Botnetz Erkennung implementieren. Salim et al. 
 \cite{DBLP:journals/sensors/SalimATPP22} erläutern ein Framework, welches Digital Twins und Packet Auditor in einer Blockchain zur Erkennung einsetzen. \\ \\ Neben Blockchains wird auch Fog 
 Computing zur Botnetzerkennung eingesetzt. \cite{Lawal2020AnAM} stellen ein Framework vor, welches Anomalien in einem IoT Netzwerk erkennt, aufgebaut als Fog Computing Architektur, anhand von signatur- 
-und anomaliebasierten Erkennungsmethoden. Die signaturbasierte Methode greift auf eine Datenbank zu, welche IP Adressen enthält die als Angriffsursprung identifiziert sind. Die anomaliebasierte Methode 
+und anomaliebasierten Erkennungsmethoden. Die signaturbasierte Methode greift auf eine Datenbank zu, welche IP-Adressen enthält die als Angriffsursprung identifiziert sind. Die anomaliebasierte Methode 
 klassifiziert anhand eines Extreme Gradient Booster (XGBoost) Algorithmus \cite{DBLP:journals/corr/ChenG16} zwischen auffälligem und unauffälligem Netzwerkverkehr. Der Netzwerkverkehr fließt zu Beginn 
-durch ein signaturbasiertes IDS um die IP Adresse mit der Datenbank zu vergleichen. Sollte nichts gefunden werden, fließt der Verkehr durch ein anomaliebasiertes IDS und klassifiziert ihn entsprechend.
-\\ \\ Das letzte Framework erläutern Kim et al. \cite{DBLP:journals/cn/KimNPSS19} in ihrer Arbeit zu einer SDN Umgebung mit integrierten Netzwerk Funktionen auf NFV, welche in den IoT-Geräten integriert
+durch ein signaturbasiertes IDS, um die IP-Adresse mit der Datenbank zu vergleichen. Sollte nichts gefunden werden, fließt der Verkehr durch ein anomaliebasiertes IDS und klassifiziert ihn entsprechend.
+\\ \\ Das letzte Framework erläutern Kim et al. \cite{DBLP:journals/cn/KimNPSS19} in ihrer Arbeit zu einer SDN Umgebung mit integrierten Netzwerk-Funktionen auf NFV, welche in den IoT-Geräten integriert
 sind. Das Konzept aus der Arbeit von Kim et al. beschreibt ein IoT Netzwerk, welches für jede einzelne Komponente eigene Sicherheitsrichtlinien vorgibt. Die Architektur des Netzwerks beginnt mit einer
 \textit{Control Plane}, welches für das Management des Netzwerks verantwortlich ist. Die \textit{Control Plane} besteht aus fünf Komponenten: \textit{Datapath}, welches für die Kommunikation zwischen 
 \textit{Control Plane}, \textit{Function Plane} und \textit{Data Plane} (Verbindung zu den IoT-Geräten) verantwortlich ist. Die zweite Komponente ist der \textit{Protocol
 Parser} der Nachrichten von der \textit{Function-} und \textit{Data Plane} empfängt und zum \textit{Core Module} weiterleitet. Das \textit{Core Module} verwaltet Netzwerkkomponenten, stellt 
 Sicherheitsfunktionen zur Verfügung und erkennt Anomalien bei den Sicherheitsrichtlinien. Der \textit{Event Manager} stellt Event basierte Kommunikation zwischen zur Verfügung. Die letzte Komponente sind 
 \textit{Applications} welche über ein \textit{programmable interface} implementiert sind und sind für die Verarbeitung von den IoT-Geräten zuständig. Die \textit{Function Plane} ist für die Sicherheit der 
-IoT-Geräte zuständig, da diese durch begrenzte Leistung Anspruchsvolle Sicherheitsfunktionen nicht verarbeiten können. Diese Sicherheitsfunktionen werden über NFV Techniken ausgeführt damit die Funktionen 
-virtualisiert zur Verfügung stehen. Die Kommunikation findet über das von Kim et al. vorgestellte SODA Protocol statt, damit zum Beispiel Richtilinien richtig verwaltet werden können. Wenn zum Beispiel neue 
-Geräte dem Netzwerk hinzugefügt werden, dann werden anhand von Eventbasierten Prozessen diese auf zum Beispiel Sicherheitsbedenken geprüft. Sollte über das Netzwerk ein Angriff stattfinden, so wird das an 
+IoT-Geräte zuständig, da diese durch begrenzte Leistung anspruchsvolle Sicherheitsfunktionen nicht verarbeiten können. Diese Sicherheitsfunktionen werden über NFV Techniken ausgeführt, damit die Funktionen 
+virtualisiert zur Verfügung stehen. Die Kommunikation findet über das von Kim et al. vorgestellte SODA Protocol statt, damit zum Beispiel Richtlinien richtig verwaltet werden können. Wenn zum Beispiel neue 
+Geräte dem Netzwerk hinzugefügt werden, dann werden anhand von eventbasierten Prozessen diese auf zum Beispiel Sicherheitsbedenken geprüft. Sollte über das Netzwerk ein Angriff stattfinden, so wird das an 
 den Richtlinien erkannt und diese dann angepasst. \\ Bei der Implementierung wurde die \textit{Control-} und \textit{Function Plane} als SDN Controller implementiert, das \textit{Data Plane} als Kommunikation 
-zwischen dem Controller und den IoT-Geräten. Zur vereinfachten Ressourcen Verwaltung nutzen Kim et al. NFV bei jedem IoT-Gerät.
+zwischen dem Controller und den IoT-Geräten. Zur vereinfachten Ressourcenverwaltung nutzen Kim et al. NFV bei jedem IoT-Gerät.
 % - black und whitelisting fällt immer wieder auf bei der Erkennung in Zha et al.
-\subsection*{Techniken zur Botnetzerkennung}
+\subsection*{Techniken zur Erkennung von Botnetzen}
 % - Flow, anomaly, flux, dga, bot infection detection
-Die erste vorgestellte Technik aus \ref{sec:theory} ist die Flowbasierte Erkennung von Botnetzen. 
+Die erste vorgestellte Technik aus Kapitel \ref{sec:theory} ist die Flowbasierte Erkennung von Botnetzen. Obeidat und Yaqbeh \cite{DBLP:journals/jece/ObeidatY22} sowie Duan et al. \cite{DBLP:journals/ijdsn/DuanZWX22}
+stellen Arbeiten zur Erkennung von Botnetzen anhand von Netzwerkverkehr vor. Beide Arbeiten analysieren TCP, UDP und IP Pakete und klassifizieren über ML und unterteilen den Netzwerkverkehr in normalen und abnormalen Verkehr.
+Während beim Netzwerkverkehr die gleichen Pakete untersucht werden, unterscheiden sich die Arbeiten bei der Nutzung von ML. Duan et al. nutzen zur Klassifizierung des Netzwerkverkehrs ein autoencoder Modell \cite{vincent2010stacked}
+mit einem Gradient Boosting Decision Tree (GBDT) Algorithmus \cite{DBLP:conf/nips/KeMFWCMYL17}. Obeidat und Yaqbeh nutzen einen genetischen Algorithmus \cite{DBLP:journals/mta/KatochCK21} zur Klassifizierung. \\ \\

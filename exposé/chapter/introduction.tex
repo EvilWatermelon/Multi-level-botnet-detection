@@ -14,9 +14,11 @@ infiziert das Gerät entweder durch brute force Methoden oder durch Ausnutzen ei
 In der Ausbreitungs-Phase ist eine lauffähige Version des Bots installiert und auf Basis der Architektur des infizierten Geräts ausgeführt.
 Um auf dem Gerät Malware zu verhindern die nicht vom Bot selbst ausgeführt wird, stoppt der Bot andere Prozesse um Ports für sich selbst zu blocken. 
 Daraufhin rekrutiert das bösartige Programm weitere Bots um das Botnetz so schnell wie möglich zu erweitern. In der Angriffs-Phase führt das Botnetz Angriffe wie Distributed Denial of 
-Service (DDoS), krypto mining und spam Angriffe aus. Die erläuterten Phasen arbeiten auch Studien wie 
-\cite{10.1007/978-3-030-33229-7_21, Alzahrani2020,DBLP:journals/computer/VlajicZ18,NGUYEN2020128} aus. \\ Nach der Erläuterung wie Botnetze funktionieren ist nun zu klären, wie der Prozess eines 
-Botnetzes erkennbar ist um IoT-Geräte entsprechend zu schützen. Nach Xing et al. \cite{Xing2021SurveyOB} kann die Botnetz Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und 
+Service (DDoS), krypto mining und spam Angriffe aus. Die erläuterten Phasen arbeiten auch Studien wie \cite{10.1007/978-3-030-33229-7_21, Alzahrani2020,DBLP:journals/computer/VlajicZ18,NGUYEN2020128} 
+aus. Botnetze können nach verschiedenen Architekturen aufgebaut sein: zentralisiert und Peer-to-Peer(P2P) Architekturen \cite{DBLP:journals/fi/VuSEBD21}. Bei zentralen Botnetzen kommuniziert der Botmaster
+über einen zentralen C\&C-Server mit den Bots, während bei den dezentralen P2P Architekturen der Botmaster die Befehle über das gesamte P2P-Overlay-Netzwerk verteilt. IoT Botnetze fallen dabei nicht in eine
+der beiden Kategorien. Sowohl zentralisiert als auch P2P sind möglich \cite{DBLP:conf/csndsp/McNultyV22}. \\ Nach der Erläuterung wie Botnetze funktionieren und welche es gibt, ist nun zu klären, wie der 
+Prozess eines Botnetzes erkennbar ist um IoT-Geräte entsprechend zu schützen. Nach Xing et al. \cite{Xing2021SurveyOB} kann die Botnetz Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und 
 abnormales Verhalten klassifiziert werden. Wie Abbildung \ref{fig:bot_det_met} zeigt, unterteilen diese Klassifikationen Methoden zur Erkennung. 
 
 \begin{figure}[h!]
@@ -81,7 +83,6 @@ der Suche nach offenen Ports führt auch Hajime durch. Hajime ist ein Peer-to-Pe
 BitTorrent nutzt das Kademlia Protokoll \cite{DBLP:conf/iptps/MaymounkovM02} und zusätzlich zur direkten Peer-to-Peer Kommunikation nutzt Hajime zusätzlich das uTorrent Transport Protocol. Für weitere
 technische Erläuterungen zu Hajime, analysieren \cite{DBLP:conf/ndss/HerwigHHRL19} die Phasen des Botnetzes. 
 
-% - SDN, Edge Computing etc. Referenz muss hierhin und einzelne Techniken noch erklärt werden
 %------------------------------------------------------------------------------------------------------------
 % - Ein ML Modell implementieren was via SDN ein IoT Netzwerk überwacht
 % - Laborexperiment
