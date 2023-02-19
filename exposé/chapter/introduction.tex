@@ -15,11 +15,12 @@ In der Ausbreitungs-Phase ist eine lauffähige Version des Bots installiert und 
 Um auf dem Gerät Malware zu verhindern die nicht vom Bot selbst ausgeführt wird, stoppt der Bot andere Prozesse um Ports für sich selbst zu blocken. 
 Daraufhin rekrutiert das bösartige Programm weitere Bots um das Botnetz so schnell wie möglich zu erweitern. In der Angriffs-Phase führt das Botnetz Angriffe wie Distributed Denial of 
 Service (DDoS), krypto mining und spam Angriffe aus. Die erläuterten Phasen arbeiten auch Studien wie \cite{10.1007/978-3-030-33229-7_21, Alzahrani2020,DBLP:journals/computer/VlajicZ18,NGUYEN2020128} 
-aus. Botnetze können nach verschiedenen Architekturen aufgebaut sein: zentralisiert und Peer-to-Peer(P2P) Architekturen \cite{DBLP:journals/fi/VuSEBD21}. Bei zentralen Botnetzen kommuniziert der Botmaster
+aus. Dennoch lassen sich die drei Phasen in weitere Phasen aufteilen und können je nach Verwendungszweck des Botnetzes varriieren. Botnetze können nach verschiedenen Architekturen aufgebaut sein: 
+zentralisiert, Peer-to-Peer(P2P) Architekturen \cite{DBLP:journals/fi/VuSEBD21} und hybride Architekturen \cite{DBLP:conf/ecai2/ApostolTP22}. Bei zentralen Botnetzen kommuniziert der Botmaster
 über einen zentralen C\&C-Server mit den Bots, während bei den dezentralen P2P Architekturen der Botmaster die Befehle über das gesamte P2P-Overlay-Netzwerk verteilt. IoT Botnetze fallen dabei nicht in eine
-der beiden Kategorien. Sowohl zentralisiert als auch P2P sind möglich \cite{DBLP:conf/csndsp/McNultyV22}. \\ Nach der Erläuterung wie Botnetze funktionieren und welche es gibt, ist nun zu klären, wie der 
-Prozess eines Botnetzes erkennbar ist um IoT-Geräte entsprechend zu schützen. Nach Xing et al. \cite{Xing2021SurveyOB} kann die Botnetz Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und 
-abnormales Verhalten klassifiziert werden. Wie Abbildung \ref{fig:bot_det_met} zeigt, unterteilen diese Klassifikationen Methoden zur Erkennung. 
+der beiden Kategorien. Sowohl zentralisiert als auch P2P sind möglich \cite{DBLP:conf/csndsp/McNultyV22} und hybride Architekturen kombinieren die beiden vorangegangen Architekturen. \\ Nach der Erläuterung 
+wie Botnetze funktionieren und welche es gibt, ist nun zu klären, wie der Prozess eines Botnetzes erkennbar ist um IoT-Geräte entsprechend zu schützen. Nach Xing et al. \cite{Xing2021SurveyOB} kann die Botnetz 
+Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und abnormales Verhalten klassifiziert werden. Wie Abbildung \ref{fig:bot_det_met} zeigt, unterteilen diese Klassifikationen Methoden zur Erkennung. 
 
 \begin{figure}[h!]
     \centering
@@ -29,23 +30,19 @@ abnormales Verhalten klassifiziert werden. Wie Abbildung \ref{fig:bot_det_met} z
 \end{figure}
 
 Die \textit{Honeypot Analyse} erkennt Code Beispiele durch das Honeypot trapping was eine hohe Genauigkeit von bereits bekannten Botnetzen ermöglicht. Die Honeypot Methoden können
-verschlüsselten Netzwerkverkehr nur schlecht erkennen sowie unbekannte Botnetze. Bots die eigene Funktionen zur Umgehung von Honeypots besitzen, können durch fehlende Benutzereingriffe
-auch nicht von der \textit{Honeypot Analyse} erfasst werden. Weit verbreitet sind die Methoden Erkennung von \textit{Kommunikationssignaturen} anhand von Signaturen und Muster. Dabei 
-werden in Intrusion Detection Systems (IDS) Regeln für den Merkmalsabgleich hinterlegt um Botnetz aktivitäten zu identifizieren. Dadurch können IDS Botnetze mit bestimmten Merkmalen 
+verschlüsselten Netzwerkverkehr nur schlecht erkennen sowie unbekannte Botnetze. Bots die eigene Funktionen zur Umgehung von Honeypots besitzen, können nicht von der \textit{Honeypot 
+Analyse} erfasst werden. Die Analyse ist laut Xing et al. sinnvoll um das Botnetzverhalten in kontrollierten Umgebungen auszuführen aber nicht als einzelne Technik einfach zu umgehen.
+Daher sollte diese Technik in Kombination mit anderen Techniken eingesetzt werden. Weit verbreitet sind die Methoden Erkennung von \textit{Signaturen}. Dabei 
+werden in Intrusion Detection Systems (IDS) Regeln für den Merkmalsabgleich hinterlegt, um Botnetz aktivitäten zu identifizieren. Dadurch können IDS Botnetze mit bestimmten Merkmalen 
 erkennen, aber unbekannte Funktionen werden dabei nicht erkannt sowie auch Botnetze die Techniken zur Verschleierung von Code nutzen. Bei den Methoden durch Erkennung vom
-\textit{abnormales Verhalten} ist die Idee, Hostverhalten- oder Netzwerkverkehr Auffälligkeiten zwischen in gutartig und bösartig zu klassifizieren. Neben den erwähnten Methoden 
-erläutern Singh et al. \cite{DBLP:journals/compsec/SinghSK19} Techniken, zur Erkennung von Botnetzen. Singh et al. klassifizieren die Techniken in Flow-, Anomalie-, Flussmittel-, Domain Generation 
-Algorithm (DGA)-basierten \cite{DBLP:journals/jksucis/ManasrahKF22} und Bot infizierungs Erkennung. Bei der Flow-basierten Technik findet eine Klassifizierung des Netzwerkverkehrs auf 
-Basis von verschiedenen Parametern statt, wobei eine Aufteilung des Verkehrs in bösartig und gutartig stattfindet. Anhand von Parametern oder Mustern versucht die Anomalie-basierte Technik 
-anomalien im Netzwerkverkehr zu finden, die sich vom regulären Verkehr unterscheiden. Über die Flussmittel-basierte Technik werden im Netzwerkverkehr IP-Flüsse gefunden. Dabei wird darauf 
-geachtet, wie sich die IP-Larte verändert, welche in Relation zur einer Domäne steht und einen niedrigen Time To Live (TTL)-Wert hat. Die Konzentrationen auf abgefragte Domänen führt die 
-DGA-basierte Technik durch. Mit dieser Technik soll zwischen algorithmischen bösartig erzeugten und gutartigen Domänen differenziert werden. Nach dem Stand von \cite{DBLP:journals/compsec/SinghSK19} 
-versuchen die aktuelleren Technikansätze, anstatt C\&C-Server zu identifizieren, infizierte Geräte zu erkennen. \\ Die Dissertation soll sich mit der Erkennung über mehrere Level beschäftigen.
-Konkret bedeutet es, die Verwendung mehrerer Techniken anhand einer Kombination aus mehreren Methoden. Die Umsetzung über mehrere Erkennungslevel erklären Stevanovic und Pedersen 
-\cite{DBLP:journals/ijcysa/StevanovicP16}. Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation mit dem C\&C-Server sowie den Angriffsverkehr anhand von
-TCP, UDP und DNS zu erkennen. Die Erkennung basiert auf supervised Machine Learning um bestimmte Muster zu identifizieren. Das komplette System besteht aus insgesamt drei Komponenten: die Verarbeitung,
-Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet durch Analyse und Extraktion anhand von statistischen Funktionen. Abbildung \ref{fig:stats_features} 
-zeigt eine Liste mit den extrahierten Informationen aus TCP und UDP. 
+\textit{abnormales Verhalten} (auch Verhaltensbasiert genannt) ist die Idee, Hostverhalten- oder Netzwerkverkehr Anomalien zwischen gutartig und bösartig zu klassifizieren.
+Zusammengefasst betonen die Xing et al., dass eine Kombination der verschiedenen Methoden eine höhere Genauigkeit der Erkennung erreicht. \\ Die Dissertation soll sich mit der Erkennung 
+über mehrere Level beschäftigen. Konkret bedeutet es, die Verwendung einer Hybriden Erkennung durch mehrere Erkennungsmethoden während jeder Phase eines Botnetzes. Die Umsetzung über mehrere 
+Erkennungslevel erklären Stevanovic und Pedersen \cite{DBLP:journals/ijcysa/StevanovicP16}. Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation 
+mit dem C\&C-Server sowie den Angriffsverkehr anhand von TCP, UDP und DNS zu erkennen. Dabei geht es um die Analyse von Netzwerkflussdaten, Payloads sowie Verhaltensmuster. Die Erkennung basiert 
+auf supervised Machine Learning um bestimmte Muster zu identifizieren. Das komplette 
+System besteht aus insgesamt drei Komponenten: die Verarbeitung, Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet durch Analyse und Extraktion 
+anhand von statistischen Funktionen. Abbildung \ref{fig:stats_features} zeigt eine Liste mit den extrahierten Informationen aus TCP und UDP. 
 
 \begin{figure}[h!]
     \centering
