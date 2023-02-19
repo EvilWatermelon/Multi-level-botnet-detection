@@ -43,7 +43,11 @@ IoT-Geräte zuständig, da diese durch begrenzte Leistung anspruchsvolle Sicherh
 virtualisiert zur Verfügung stehen. Die Kommunikation findet über das von Kim et al. vorgestellte SODA Protocol statt, damit zum Beispiel Richtlinien richtig verwaltet werden können. Wenn zum Beispiel neue 
 Geräte dem Netzwerk hinzugefügt werden, dann werden anhand von eventbasierten Prozessen diese auf zum Beispiel Sicherheitsbedenken geprüft. Sollte über das Netzwerk ein Angriff stattfinden, so wird das an 
 den Richtlinien erkannt und diese dann angepasst. \\ Bei der Implementierung wurde die \textit{Control-} und \textit{Function Plane} als SDN Controller implementiert, das \textit{Data Plane} als Kommunikation 
-zwischen dem Controller und den IoT-Geräten. Zur vereinfachten Ressourcenverwaltung nutzen Kim et al. NFV bei jedem IoT-Gerät. \\ \\ Aus den Arbeiten der aktuellen Forschung geht hervor, dass bei der Verwendung 
+zwischen dem Controller und den IoT-Geräten. Zur vereinfachten Ressourcenverwaltung nutzen Kim et al. NFV bei jedem IoT-Gerät.
+
+\subsection*{Multi-Level Botnetzerkennung}
+Neben der Forschung zur Botnetzerkennung anhand einzelner Methoden soll dieses Kapitel den aktuellen Stand der Forschung zur Botnetzerkennung anhand kombinierter Methoden vorstellen. So beschreiben Rahal et al. 
+\cite{DBLP:journals/jnsm/RahalKGCG22} ein Framework, welches auf Netzwerkebene und Aktiviäten in Fahrzeugen beobachtet. \\ \\ Aus den Arbeiten der aktuellen Forschung geht hervor, dass bei der Verwendung 
 von ML die eingesetzten Algorithmen immer zu Ergebnissen führen bei denen das Modell eine Genauigkeit von über 90\% erreicht. Dabei gehen die Arbeiten nicht weiter darauf ein, warum der entsprechende Algorithmus
 verwendet wird und welche Vorteile dieser bringt. Zudem erkennen die Arbeiten die Botnetze immer zu den späteren Phasen eines Botnetzes womit die Arbeiten keine Prävention von Botnetzen durchführen. Des weiteren
 nutzen die Botnetzerkennungen nur einzelne Methoden und kombinieren diese nicht miteinander um zum Beispiel die Nachteile einer Methode mit einer weiteren auszugleichen. Wenn die Netzwerkarchitekturen wie 

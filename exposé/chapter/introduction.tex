@@ -8,7 +8,8 @@ die Erkennung von Botnetzen gehen, welche Angriffe über IoT-Geräte ausführen.
 auch Botmaster genannt in einem Overlay-Netzwerk \cite{Xing2021SurveyOB}. Die Botnetze nutzen Zero-day Schwachstellen, Peer-2-Peer Netze, Phishing Angriffe, Anonyme Netzwerke,
 Blockchain Netzwerke und Stromnetze zur Verbreitung für ihre Verwendungszwecke \cite{DBLP:conf/cycon/CasenoveM14,DBLP:conf/esorics/KurtECAU20}. Auf Basis der Architektur 
 des Botnetzes findet zu jeder Zeit ein Kommunikations- und Kontrollprozess mit dem Command und Control (C\&C)-Server statt. Der C\&C-Server gibt den Bots Befehle die 
-diese dann durchführen \cite{SCHILLER200729} zum Beispiel, über das Internet Relay Chat (IRC)-Protokoll. \\ Botnetze durchlaufen drei Phasen wie Wazzan et al. 
+diese dann durchführen \cite{SCHILLER200729} zum Beispiel, über das Internet Relay Chat (IRC)-Protokoll. Der Botmaster kann aber auch ohne den C\&C-Server Nachrichten an die Bots leiten, wie
+später die verschiedenen Architekturen zeigen. \\ Botnetze durchlaufen drei Phasen wie Wazzan et al. 
 \cite{Wazzan2021InternetOT} beschreiben, scannen, ausbreiten und angreifen. Während der Scan-Phase sucht ein Bot nach vulnerablen IoT-Geräten und 
 infiziert das Gerät entweder durch brute force Methoden oder durch Ausnutzen einer Schwachstelle.
 In der Ausbreitungs-Phase ist eine lauffähige Version des Bots installiert und auf Basis der Architektur des infizierten Geräts ausgeführt.
@@ -17,8 +18,8 @@ Daraufhin rekrutiert das bösartige Programm weitere Bots um das Botnetz so schn
 Service (DDoS), krypto mining und spam Angriffe aus. Die erläuterten Phasen arbeiten auch Studien wie \cite{10.1007/978-3-030-33229-7_21, Alzahrani2020,DBLP:journals/computer/VlajicZ18,NGUYEN2020128} 
 aus. Dennoch lassen sich die drei Phasen in weitere Phasen aufteilen und können je nach Verwendungszweck des Botnetzes varriieren. Botnetze können nach verschiedenen Architekturen aufgebaut sein: 
 zentralisiert, Peer-to-Peer(P2P) Architekturen \cite{DBLP:journals/fi/VuSEBD21} und hybride Architekturen \cite{DBLP:conf/ecai2/ApostolTP22}. Bei zentralen Botnetzen kommuniziert der Botmaster
-über einen zentralen C\&C-Server mit den Bots, während bei den dezentralen P2P Architekturen der Botmaster die Befehle über das gesamte P2P-Overlay-Netzwerk verteilt. IoT Botnetze fallen dabei nicht in eine
-der beiden Kategorien. Sowohl zentralisiert als auch P2P sind möglich \cite{DBLP:conf/csndsp/McNultyV22} und hybride Architekturen kombinieren die beiden vorangegangen Architekturen. \\ Nach der Erläuterung 
+über einen zentralen C\&C-Server mit den Bots, während bei den dezentralen P2P Architekturen der Botmaster die Befehle über das gesamte P2P-Overlay-Netzwerk verteilt und hybride Architekturen kombinieren 
+die beiden vorangegangen Architekturen. IoT Botnetze fallen dabei nicht in eine der drei Architekturen. Für IoT Botnetze sind alle Architekturen möglich \cite{DBLP:conf/csndsp/McNultyV22}. \\ Nach der Erläuterung 
 wie Botnetze funktionieren und welche es gibt, ist nun zu klären, wie der Prozess eines Botnetzes erkennbar ist um IoT-Geräte entsprechend zu schützen. Nach Xing et al. \cite{Xing2021SurveyOB} kann die Botnetz 
 Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und abnormales Verhalten klassifiziert werden. Wie Abbildung \ref{fig:bot_det_met} zeigt, unterteilen diese Klassifikationen Methoden zur Erkennung. 
 
@@ -30,19 +31,20 @@ Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und abnormales V
 \end{figure}
 
 Die \textit{Honeypot Analyse} erkennt Code Beispiele durch das Honeypot trapping was eine hohe Genauigkeit von bereits bekannten Botnetzen ermöglicht. Die Honeypot Methoden können
-verschlüsselten Netzwerkverkehr nur schlecht erkennen sowie unbekannte Botnetze. Bots die eigene Funktionen zur Umgehung von Honeypots besitzen, können nicht von der \textit{Honeypot 
-Analyse} erfasst werden. Die Analyse ist laut Xing et al. sinnvoll um das Botnetzverhalten in kontrollierten Umgebungen auszuführen aber nicht als einzelne Technik einfach zu umgehen.
-Daher sollte diese Technik in Kombination mit anderen Techniken eingesetzt werden. Weit verbreitet sind die Methoden Erkennung von \textit{Signaturen}. Dabei 
+verschlüsselten Netzwerkverkehr nur schlecht erkennen und keine unbekannten Botnetze. Bots die eigene Funktionen zur Umgehung von Honeypots besitzen, können nicht von der \textit{Honeypot 
+Analyse} erfasst werden. Die Analyse ist laut Xing et al. sinnvoll um das Botnetzverhalten in kontrollierten Umgebungen auszuführen aber nicht als einzelne Technik.
+Dennoch sollte diese Technik in Kombination mit anderen Techniken eingesetzt werden. Eine weitere Technik sind die Methoden Erkennung von \textit{Signaturen}. Dabei 
 werden in Intrusion Detection Systems (IDS) Regeln für den Merkmalsabgleich hinterlegt, um Botnetz aktivitäten zu identifizieren. Dadurch können IDS Botnetze mit bestimmten Merkmalen 
 erkennen, aber unbekannte Funktionen werden dabei nicht erkannt sowie auch Botnetze die Techniken zur Verschleierung von Code nutzen. Bei den Methoden durch Erkennung vom
-\textit{abnormales Verhalten} (auch Verhaltensbasiert genannt) ist die Idee, Hostverhalten- oder Netzwerkverkehr Anomalien zwischen gutartig und bösartig zu klassifizieren.
-Zusammengefasst betonen die Xing et al., dass eine Kombination der verschiedenen Methoden eine höhere Genauigkeit der Erkennung erreicht. \\ Die Dissertation soll sich mit der Erkennung 
-über mehrere Level beschäftigen. Konkret bedeutet es, die Verwendung einer Hybriden Erkennung durch mehrere Erkennungsmethoden während jeder Phase eines Botnetzes. Die Umsetzung über mehrere 
-Erkennungslevel erklären Stevanovic und Pedersen \cite{DBLP:journals/ijcysa/StevanovicP16}. Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation 
-mit dem C\&C-Server sowie den Angriffsverkehr anhand von TCP, UDP und DNS zu erkennen. Dabei geht es um die Analyse von Netzwerkflussdaten, Payloads sowie Verhaltensmuster. Die Erkennung basiert 
-auf supervised Machine Learning um bestimmte Muster zu identifizieren. Das komplette 
-System besteht aus insgesamt drei Komponenten: die Verarbeitung, Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet durch Analyse und Extraktion 
-anhand von statistischen Funktionen. Abbildung \ref{fig:stats_features} zeigt eine Liste mit den extrahierten Informationen aus TCP und UDP. 
+\textit{abnormalen Verhalten} (auch Verhaltensbasiert genannt), ist die Idee, Hostverhalten- oder Netzwerkverkehr Anomalien zwischen gutartig und bösartig zu klassifizieren. Der Vorteil der 
+letzten Technik ist die Möglichkeit zur Erkennung von unbekannten Botnetzen.
+Zusammengefasst betonen Xing et al., dass eine Kombination der verschiedenen Methoden eine höhere Genauigkeit zur Erkennung erreichen. \\ Aus der Erkenntnis zur Verwendung mehrerer Techniken 
+soll sich die Dissertation mit der Erkennung über mehrere Techniken beschäftigen. Konkret bedeutet das die Verwendung einer Hybriden Erkennung durch mehrere Erkennungsmethoden während jeder Phase 
+eines Botnetzes wie Wazzan et al. \cite{Wazzan2021InternetOT} vorschlagen. Die Umsetzung über mehrere Erkennungslevel erklären Stevanovic und Pedersen \cite{DBLP:journals/ijcysa/StevanovicP16}. 
+Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation mit dem C\&C-Server sowie den Angriffsverkehr anhand von TCP, UDP und DNS zu erkennen. In der Arbeit 
+geht es um die Analyse von Netzwerkflussdaten, Payloaddaten sowie Verhaltensmuster. Die Erkennung basiert auf supervised Machine Learning um bestimmte Muster zu identifizieren. Das komplette System 
+besteht aus insgesamt drei Komponenten: die Verarbeitung, Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet, durch Analyse und Extraktion anhand von 
+statistischen Funktionen. Abbildung \ref{fig:stats_features} zeigt eine Liste mit den extrahierten Informationen aus TCP und UDP. 
 
 \begin{figure}[h!]
     \centering
@@ -59,17 +61,17 @@ anhand von statistischen Funktionen. Abbildung \ref{fig:stats_features} zeigt ei
 \end{figure}
 
 Bei der DNS Analyse werden Fully Qualified Domain Names (FQDN) beobachtet und für jeden FQDN, statistische Eigenschaften extrahiert, welche in Abbildung \ref{fig:stats_dns} aufgelistet sind. Zur 
-Klassifizierung nutzt die Botnetz Erkennung einen Random Forest Classifier um dann über eine Client entitäten Analyse einen Report zu erstellen über infizierte Geräte. Für die Dissertation sollen 
-wie bei Stevanovic und Pedersen auch mehrere Level zur Erkennung von Botnetzen eingesetzt werden. Das daraus resultierende Ziel erklärt Kapitel \ref{sec:goals} ausführlicher.
-Die Botnetz Erkennung nach den unterschiedlichen Methoden und Techniken mit mehrere Level soll mehr Geräte vor der illegalen Verwendung von Botnetzen schützen. 
+Klassifizierung nutzt die Botnetz Erkennung einen Random Forest Classifier, um dann über eine Client Entitäten Analyse einen Report zu erstellen über infizierte Geräte. Stevanovic und Pedersen 
+zeigen mit der Arbeit, dass es möglich ist, mehrere Level zur Erkennung von Botnetzen zu implementieren. Das daraus resultierende Ziel erklärt Kapitel \ref{sec:goals} ausführlicher.
+Die Botnetz Erkennung nach den unterschiedlichen Methoden und Techniken über mehrere Level soll mehr Geräte vor der illegalen Verwendung von Botnetzen schützen. 
 
 \subsection*{Angriffsmöglichkeiten zum Testen}
-Um den Prozess der Botnetz Erkennung durch Fallstudien zu testen, sollen in der Dissertation verschiedene Botnetze Verwendung finden und alle drei Phasen durchführen. Dabei sollen bereits bekannte
-Botnetze implementiert und ausgeführt werden. Zusätzlich soll ein Botnetz implementiert werden um Herauszufinden, ob das System auch neue, unbekannte Botnetze erkennt. Der Fokus bei den Botnetzen 
-soll auch weiterhin im IoT Bereich liegen. Kolias et al. \cite{DBLP:journals/computer/KoliasKSV17} weisen in ihrer Arbeit neben Mirai auf das Botnetz Hajime hin, welches in der Dissertation
-für die Botnetzerkennung ausgeführt werden soll. Nach Kolias et al. besteht Mirai aus vier Komponenten, dem \textit{Bot}, dem \textit{C\&C-Server}, der \textit{loader} und der \textit{report Server}. 
-Der \textit{Bot} und \textit{C\&C-Server} weichen nicht von der allgemeinen Funktionsweise ab, wie in \ref{sec:theory} erklärt. Der \textit{loader} übernimmt die Kommunikation mit neuen infizierten 
-Geräten und verteilt direkt an sie ausführbare Dateien. Der \textit{report Server} verwaltet Informationen über alle Geräte im Botnetz über eine Datenbank und kommuniziert mit den neu infizierten Geräten. 
+Um den Prozess der Botnetz Erkennung durch Fallstudien zu testen, sollen in der Dissertation verschiedene Botnetze ausgeführt werden. Dabei sollen bereits bekannte Botnetze ausgeführt werden und 
+zusätzlich soll ein Botnetz implementiert werden um herauszufinden, ob das System auch neue, unbekannte Botnetze erkennt. Das Kriterium zur Auswahl sind Botnetze die den Fokus auf IoT Geräte legen. 
+Kolias et al. \cite{DBLP:journals/computer/KoliasKSV17} weisen in ihrer Arbeit auf Mirai und Hajime hin, welche in der Dissertation für die Botnetzerkennung ausgeführt werden sollen.
+Nach Kolias et al. besteht Mirai aus vier Komponenten, dem \textit{Bot}, dem \textit{C\&C-Server}, der \textit{loader} und der \textit{report Server}. 
+Der \textit{Bot} und \textit{C\&C-Server} weichen nicht von der allgemeinen Funktionsweise ab. Der \textit{loader} übernimmt die Kommunikation mit neuen infizierten 
+Geräten und verteilt ausführbare Dateien. Der \textit{report Server} verwaltet Informationen über alle Geräte im Botnetz über eine Datenbank und kommuniziert mit den neu infizierten Geräten. 
 Im folgenden Ablauf operiert und kommuniziert Mirai. 
 Zu Beginn scannt Mirai zufällige IP Adressen über TCP ob die Ports 23 oder 2323 zuhören. Über brute-force Angriffe sucht der bot IoT Geräte, die schlecht konfiguriert sind (z.B. Standard Login Daten die
 nicht geändert wurden). Mit einer geöffneten Shell gibt der Bot Informationen über das Gerät an den report Server über einen anderen Port. Der botmaster prüft über den C\&C-Server neu ausgewählte Geräte 
