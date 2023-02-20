@@ -32,17 +32,18 @@ Erkennung in Honeypot Analyse, Signaturen aus der Kommunikation und abnormales V
 
 Die \textit{Honeypot Analyse} erkennt Code Beispiele durch das Honeypot trapping was eine hohe Genauigkeit von bereits bekannten Botnetzen ermöglicht. Die Honeypot Methoden können
 verschlüsselten Netzwerkverkehr nur schlecht erkennen und keine unbekannten Botnetze. Bots die eigene Funktionen zur Umgehung von Honeypots besitzen, können nicht von der \textit{Honeypot 
-Analyse} erfasst werden. Die Analyse ist laut Xing et al. sinnvoll um das Botnetzverhalten in kontrollierten Umgebungen auszuführen aber nicht als einzelne Technik.
-Dennoch sollte diese Technik in Kombination mit anderen Techniken eingesetzt werden. Eine weitere Technik sind die Methoden Erkennung von \textit{Signaturen}. Dabei 
-werden in Intrusion Detection Systems (IDS) Regeln für den Merkmalsabgleich hinterlegt, um Botnetz aktivitäten zu identifizieren. Dadurch können IDS Botnetze mit bestimmten Merkmalen 
-erkennen, aber unbekannte Funktionen werden dabei nicht erkannt sowie auch Botnetze die Techniken zur Verschleierung von Code nutzen. Bei den Methoden durch Erkennung vom
-\textit{abnormalen Verhalten} (auch Verhaltensbasiert genannt), ist die Idee, Hostverhalten- oder Netzwerkverkehr Anomalien zwischen gutartig und bösartig zu klassifizieren. Der Vorteil der 
-letzten Technik ist die Möglichkeit zur Erkennung von unbekannten Botnetzen.
-Zusammengefasst betonen Xing et al., dass eine Kombination der verschiedenen Methoden eine höhere Genauigkeit zur Erkennung erreichen. \\ Aus der Erkenntnis zur Verwendung mehrerer Techniken 
-soll sich die Dissertation mit der Erkennung über mehrere Techniken beschäftigen. Konkret bedeutet das die Verwendung einer Hybriden Erkennung durch mehrere Erkennungsmethoden während jeder Phase 
+Analyse} erfasst werden. Diese Technik ist sinnvoll für die Erkennung bereits bekannter Botnetze. Dennoch sollte
+diese Methode in Kombination mit anderen Methoden eingesetzt werden um unbekannte Botnetze auch zu erkennen. Eine weitere Methode ist die Erkennung von \textit{Signaturen}. Dabei 
+werden in Intrusion Detection Systems (IDS) Regeln für den Merkmalsabgleich hinterlegt, um Botnetz aktivitäten zu identifizieren. Dadurch können IDS, Botnetze mit bestimmten Merkmalen 
+erkennen, aber unbekannte Funktionen werden dabei nicht erkannt sowie auch Botnetze die Methoden zur Verschleierung von Code nutzen. Bei den Methoden durch Erkennung vom
+\textit{abnormalen Verhalten}, ist die Idee, Hostverhalten- oder Netzwerkverkehr Anomalien zwischen gutartig und bösartig zu klassifizieren. Der Vorteil der letzten Ergebnisse
+Methode ist die Möglichkeit zur Erkennung von unbekannten Botnetzen. Laut Xing et al. sollten diese Methoden des \textit{abnormalen Verhaltens} in Kombination genutzt werden um passende 
+ zu erzielen. Zusammengefasst hat jeder dieser Methoden Nachteile die über eine Kombination mit den jeweils anderen ausgebessert werden können. \\ Aus der Erkenntnis zur Verwendung mehrerer Techniken 
+soll sich die Dissertation mit einer Kombination aus mehreren Methoden beschäftigen. Konkret bedeutet das die Verwendung einer Hybriden Erkennung durch mehrere Erkennungsmethoden während jeder Phase 
 eines Botnetzes wie Wazzan et al. \cite{Wazzan2021InternetOT} vorschlagen. Die Umsetzung über mehrere Erkennungslevel erklären Stevanovic und Pedersen \cite{DBLP:journals/ijcysa/StevanovicP16}. 
-Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation mit dem C\&C-Server sowie den Angriffsverkehr anhand von TCP, UDP und DNS zu erkennen. In der Arbeit 
-geht es um die Analyse von Netzwerkflussdaten, Payloaddaten sowie Verhaltensmuster. Die Erkennung basiert auf supervised Machine Learning um bestimmte Muster zu identifizieren. Das komplette System 
+Dabei führen Stevanovic und Pedersen eine Analyse des Netzwerkverkehrs durch, um die Kommunikation mit dem C\&C-Server sowie den Angriffsverkehr anhand von TCP, UDP und DNS separat zu klassifizieren. 
+Die Erkennung beginnt auf supervised Machine Learning um bestimmte Muster der Botnetzkommunikation zu identifizieren auf Basis von bereits bekannten Netzwerküberwachungsdaten. Danach betrachtet das
+System die drei Netzwerkprotokolle und als letztes schlagen die Autoren noch neue Merkmale vor um den Netzwerkverkehr noch besser klassifizieren zu können. Die komplette Architektur 
 besteht aus insgesamt drei Komponenten: die Verarbeitung, Klassifizierung und Client Analyse. In der ersten Komponente werden der Netzwerkverkehr verarbeitet, durch Analyse und Extraktion anhand von 
 statistischen Funktionen. Abbildung \ref{fig:stats_features} zeigt eine Liste mit den extrahierten Informationen aus TCP und UDP. 
 
@@ -83,7 +84,6 @@ BitTorrent nutzt das Kademlia Protokoll \cite{DBLP:conf/iptps/MaymounkovM02} und
 technische Erläuterungen zu Hajime, analysieren \cite{DBLP:conf/ndss/HerwigHHRL19} die Phasen des Botnetzes. 
 
 %------------------------------------------------------------------------------------------------------------
-% - Ein ML Modell implementieren was via SDN ein IoT Netzwerk überwacht
 % - Laborexperiment
 % - ML Modell -> Vielleicht Unsupervised Learning, passenden Algorithmus raussuchen (basierend auf den besten Erkennungsmethoden durch ML)
 % - Das Paper im Auge behalten für entsprechende Begriffe
