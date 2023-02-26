@@ -43,13 +43,27 @@ IoT-Geräte zuständig, da diese durch begrenzte Leistung anspruchsvolle Sicherh
 virtualisiert zur Verfügung stehen. Die Kommunikation findet über das von Kim et al. vorgestellte SODA Protocol statt, damit zum Beispiel Richtlinien richtig verwaltet werden können. Wenn zum Beispiel neue 
 Geräte dem Netzwerk hinzugefügt werden, dann werden anhand von eventbasierten Prozessen diese auf zum Beispiel Sicherheitsbedenken geprüft. Sollte über das Netzwerk ein Angriff stattfinden, so wird das an 
 den Richtlinien erkannt und diese dann angepasst. \\ Bei der Implementierung wurde die \textit{Control-} und \textit{Function Plane} als SDN Controller implementiert, das \textit{Data Plane} als Kommunikation 
-zwischen dem Controller und den IoT-Geräten. Zur vereinfachten Ressourcenverwaltung nutzen Kim et al. NFV bei jedem IoT-Gerät.
-
-\subsection*{Multi-Level Botnetzerkennung}
-Neben der Forschung zur Botnetzerkennung anhand einzelner Methoden soll dieses Kapitel den aktuellen Stand der Forschung zur Botnetzerkennung anhand kombinierter Methoden vorstellen. So beschreiben Rahal et al. 
-\cite{DBLP:journals/jnsm/RahalKGCG22} ein Framework, welches auf Netzwerkebene und Aktiviäten in Fahrzeugen beobachtet. \\ \\ Aus den Arbeiten der aktuellen Forschung geht hervor, dass bei der Verwendung 
+zwischen dem Controller und den IoT-Geräten. Zur vereinfachten Ressourcenverwaltung nutzen Kim et al. NFV bei jedem IoT-Gerät. \\ \\ Aus den Arbeiten der aktuellen Forschung geht hervor, dass bei der Verwendung 
 von ML die eingesetzten Algorithmen immer zu Ergebnissen führen bei denen das Modell eine Genauigkeit von über 90\% erreicht. Dabei gehen die Arbeiten nicht weiter darauf ein, warum der entsprechende Algorithmus
-verwendet wird und welche Vorteile dieser bringt. Zudem erkennen die Arbeiten die Botnetze immer zu den späteren Phasen eines Botnetzes womit die Arbeiten keine Prävention von Botnetzen durchführen. Des weiteren
+verwendet wird und welche Vorteile dieser bringt. Zudem erkennen die Arbeiten die Botnetze immer zu den späteren Phasen eines Botnetzes womit die Arbeiten keine Prävention von Botnetzen durchführen. Desweiteren
 nutzen die Botnetzerkennungen nur einzelne Methoden und kombinieren diese nicht miteinander um zum Beispiel die Nachteile einer Methode mit einer weiteren auszugleichen. Wenn die Netzwerkarchitekturen wie 
 zum Beispiel SDNs mit in die Erkennung von IoT Botnetzen mit einbezogen werden, zeigt die aktuelle Forschung, dass dies zu einer besseren Leistung der Botnetzerkennung führt, um so zum Beispiel Latenzen zu verringern.
 Aus Kapitel \ref{sec:theory} und dem aktuellen Stand der Forschung lassen sich \cite{Xing2021SurveyOB} und \cite{Wazzan2021InternetOT} als mögliche Ansätze für die Botnetzerkennung verwenden.
+
+\subsection*{Multi-Level Botnetzerkennung}
+Neben der Forschung zur Botnetzerkennung anhand einzelner Methoden soll dieses Kapitel den aktuellen Stand der Forschung zur Botnetzerkennung anhand kombinierter Methoden vorstellen. Rahal et al. 
+\cite{DBLP:journals/jnsm/RahalKGCG22} beschreiben ein Framework, welches auf Netzwerkebene und Aktiviäten in Fahrzeugen beobachtet. Eine weitere Studie untersucht die Kombination eines Algorithmus 
+um Merkmale in einem Suchraum zu finden mit einem Modell des ML zur Klassifizierung von Bedrohungen in einem Flying ad hoc network \cite{DBLP:journals/bdcc/AbdulsattarAGKA22}. Almutairi et al. 
+\cite{DBLP:journals/jcnc/AlmutairiMAA20} implementieren eine Botnetzerkennung auf Basis einer Hostbasierten und Netzwerkbasierten Erkennung. Der Fokus bei der Erkennung liegt dabei auf den frühen 
+Phasen eines Botnetzes, was genauer bedeutet, die Bots bei der Verbreitung zu erkennen. Die hybride Botnetzerkennung wird dazu genutzt, um \textit{abnormales Verhalten} zu erkennen und falls über 
+die Netzwerkanalyse nichts erkannt wird, kann die hostbasierte Analyse zusätzlich über weitere Regeln unterstützen. Um Schwachstellen zu sammeln, setzen die Autoren einen Honeypot ein, welcher über das 
+Internet Angreifer dazu bringen soll, dass System anzugreifen. Ein Controller überwacht das Netzwerk und steuert VMs. Zudem ist eine Datenbank für Malware Signaturen eingesetzt. Um das Verhalten von Bots 
+zu beobachten, wird in einer VM ein Analysewerkzeug genutzt. Eine weitere VM führt eine dynamische Analyse durch. In der ersten Phase sammelt das System Malware Signaturen, welche in einer zweiten Phase 
+klassifiziert werden an von ML. Almutairi et al. erläutern, dass die Netzwerkanalyse wichtig ist, da die Bots über das Internet kommunizieren um zum Beispiel Nachrichten an den C\&C-Server zu schicken. \\ \\
+Auch bei der Multi-Level (auch hybriden) Botnetzerkennung liegt der Fokus auf einer Phase und auch überwiegend auf die späteren Phasen. Zusätzlich legen die Arbeiten auch in den meisten Fällen separat
+den Fokus auf C\&C-Server Erkennung oder der Erkennung von Bots.
+
+
+% - https://pdfs.semanticscholar.org/3b6c/9211ac49aee6bc2604b3c414d840e43ac58f.pdf
+% - https://e-space.mmu.ac.uk/627198/1/09241019.pdf
+% - https://pdfs.semanticscholar.org/4b14/c20e652c221bc415431b529289f9ce3637d7.pdf
