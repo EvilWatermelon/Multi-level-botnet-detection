@@ -1,0 +1,25 @@
+% left fixed width:
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{longtable}[c]{ |L{4cm}|L{10cm}| }
+    \hline
+    \rowcolor{lightgray} Begriff & Erklärung \\ [0.5ex]
+    \hline
+    \endfirsthead
+
+    Internet of Things & Geräte, zum Beispiel aus dem Haushalt, die mit dem Internet verbunden werden können \cite{NIST800171}. \\
+    \hline
+    Malware & Software, die durch Ausnutzen einer Schwachstelle zu einem schädlichen Zweck führt \cite{CNSSI4009}. \\
+    \hline
+    Honeypot & Computersystem um Informationen eines Angreifers zu bekommen, indem es gezielt kompromittiert wird \cite{DBLP:conf/icccs/MairhBVJ11}. \\
+    \hline
+    Software Defined Network & Architektur, die die Netzwerksteuerung von den Routern und Switches trennt, welche den Netzwerkverkehr weiterleiten \cite{DBLP:journals/pieee/KreutzRVRAU15}. \\
+    \hline
+    Fog Computing & Bonomi et al. \cite{DBLP:conf/sigcomm/BonomiMZA12} stellen die Fog Computing Architektur vor. \\
+    \hline
+    Edge Computing & Edge Computing ist eine Architektur die zum Fog Computing zählt \cite{DBLP:journals/fgcs/KhanAHYA19}. \\
+    \hline
+    Network Function Virutalization & Konzept, um verschiedene Funktionen virtualisiert auf einem Server auszuführen. So wird nicht mehr ein Server für eine Funktion benötigt, wie zum Beispiel eine Firewall, die auf einem Server ausgeführt wird \cite{DBLP:journals/corr/MijumbiSGBTB15}. \\
+    \hline
+    \caption{Diese Tabelle erläutert Begriffe, welche sowohl im Exposé als auch der späteren Dissertation Verwendung finden sollen.\label{tab:term_table}}\\
+\end{longtable}
