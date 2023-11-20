@@ -1,0 +1,158 @@
+\section{Hintergrund und Verwandte Arbeiten}
+
+Das Hauptziel dieser Arbeit ist der Einsatz einer hybriden IoT-Botnetzerkennung, durch ein Architekturkonzept für jede Phase eines IoT-Botnetzes. Durch die Komplexität dieses Ziels gibt es viele offene Forschungsgebiete. Daher besteht die Notwendigkeit die verschiedenen Gebiete durch eine Literaturrecherche genauer zu betrachten und herauszuarbeiten, wie das Konzept anhand aktueller Literatur aufgebaut werden muss. \\[0.2in]
+
+Um passende Methoden und Techniken zur Implementierung sowie passende Daten für die hybride IoT-Botnetzerkennung herauszuarbeiten, widmet sich dieses Kapitel der aktuellen Literatur. Um ein Konzept zur Optimierung der IoT-Botnetzerkennung zu erstellen, ist es wichtig, dass bereits bekannte Methoden und deren Kombinationen zusammengefasst darstellen, welche Möglichkeiten die verschiedenen Methoden bieten und an welchen Stellen eine Verbesserung der Leistungsfähigkeit notwendig ist. 
+
+\subsection{IoT-Botnetze}
+
+Zunächst besteht die Notwendigkeit einer Ausführung wie Botnetze grundsätzlich aufgebaut sind und schließlich IoT-Botnetze in einem Netzwerk verbreiten und welche Angriffe möglich sind. Beginnend mit Botnetzen im allgemeinen gibt es typischerweise drei Varianten von Botnetzen: zentralisierte (Abb. \ref{fig:bot_arch}(a)), dezentralisierte (Peer-to-Peer, P2P) (Abb. \ref{fig:bot_arch}(b)) und hybride Botnetze (Abb. \ref{fig:bot_arch}(c)) \cite{sharma_2022,10.1007/978-3-030-33229-7_21,DBLP:series/isc/Oorschot21}. Ein Botnetz ist die Zusammenfassung mehrerer Bedrohungen zu einer. Das typische Botnetz ist die zentrale Variante wie sie im folgenden Kapitel erläutert wird \cite{SCHILLER200729}. Tabelle \ref{tab:botnet_paper} listet ausschließlich IoT-Botnetze zur Übersicht auf, um einen Überblick zu geben, welche IoT-Botnetze bekannt sind, zusammen mit publizierten Arbeiten. 
+
+\begin{figure}[ht]
+    \centering
+    \includesvg[scale=0.7]{pictures/bot_arch.svg}
+    \caption{(a) zentrale, (b) dezentrale, (c) hybride Botnetzarchitektur (adaptiert von \cite{10.1007/978-3-030-33229-7_21})}
+    \label{fig:bot_arch}
+\end{figure}
+
+\begin{center}
+\begin{table}[ht]
+    \begin{center}
+    \begin{tabular}{p{2cm} m{5cm} c}
+       \textbf{IoT-Botnetz} & \textbf{Botnetz Architektur} & \textbf{Referenz} \\
+       \Xhline{4\arrayrulewidth}
+        Mirai & Zentrales Botnetz & \cite{DBLP:conf/uss/AntonakakisABBB17,DBLP:journals/computer/KoliasKSV17,DBLP:journals/di/ZhangUBC20} \\
+        \hline
+        Hajime & Dezentrales Botnetz & \cite{DBLP:journals/tdsc/WangSZ10} \\
+        \hline
+        Hide'n'Seek & Dezentrales Botnetz & \cite{Diaconescu2018HIDENSEEKAA} \\
+        \hline
+        Pink & Hybrides Botnetz & \cite{DBLP:conf/colcom/WangSZLGD22} \\
+        \hline
+    \end{tabular}
+    \end{center}
+    \caption{Publikationen zu bekannten IoT-Botnetzen aufgelistet mit Architektur.}
+    \label{tab:botnet_paper}
+\end{table}
+\end{center}
+
+\subsubsection{Zentrales Botnetz}
+
+Nach McNulty und Vassilakis \cite{DBLP:conf/csndsp/McNultyV22} besteht ein zentralisiertes Botnetz aus dem Botmaster, einem Command \& Control (C\&C)-Server und Bots, welche die infizierten Netzwerkgeräte repräsentieren. Der Botmaster steuert das gesamte Botnetz über den C\&C-Server und kann darüber automatisiert Angriffe über die Bots ausführen. Die Kommunikation zur Steuerung über den C\&C-Server kann über das Internet Relay Chat (IRC)- und Hyptertext-Transfer-Protocol (HTTP) durchgeführt werden \cite{Wazzan2021InternetOT}. \\[0.2in] 
+
+Noch detaillierter besteht der Lebenszyklus für ein zentrales Botnetz aus fünf Schritten \cite{SCHILLER200729}: Im ersten Schritt tritt ein neuer Bot einem IRC-Channel bei und wartet auf Befehle. Mit Schritt zwei gibt der Botmaster einen Befehl über C\&C-Server an die Bots weiter. In Schritt drei empfangen die Bots die Befehle über den IRC-Channel und führen diesen aus. Der vorletzte Schritt ist dann die Ausführung des Befehls, zum Beispiel die Ausführung eines DDoS Angriffs auf ein Ziel. Im letzten Schritt geben die Bots dann die Ergebnisse zurück an den IRC-Channel. Mit diesen Schritten sagen die Autoren von \cite{SCHILLER200729}, dass der/die Angreifende damit keine Aktionen auf den eigenen Geräten ausführen müssen, da diese über den C\&C-Server über den durchgeführt werden. \\[0.2in]
+
+Dieser Prozess kann durch ein zentrales IoT-Botnetz aus Tabelle \ref{tab:botnet_paper} dargestellt werden. Antonakakis et al. \cite{DBLP:conf/uss/AntonakakisABBB17}, Kolias et al. \cite{DBLP:journals/computer/KoliasKSV17} und Zhang et al. \cite{DBLP:journals/di/ZhangUBC20} erläutern in ihren Arbeiten Mirai. Zhang et al. betrachten Mirai aus einer forensischen Perspektive, mit dem Fokus auf die Server Infrastruktur, während Kolias et al. und Antonakakis et al. den allgemeinen Lebenszyklus betrachten. Antonakakis et al. unterteilen Mirais Struktur und Ausbreitung in vier Schritte: scannen, berichten, infizieren und Malware ausführen. \\ Im ersten Schritt werden TCP SYN Pakete an zufällige IPv4-Adressen verschickt, mit Ausnahme von Adressen die auf einer Blacklist hinterlegt sind. Ziel ist es offene Telnet Ports (TCP/23 und TCP/2323) zu finden, um dann einen Bruteforce login auszuführen, bestehend aus 10 zufälligen Nutzernamen und Passwörtern. \\ Bei erfolgreichem Login werden die IP-Adresse und die Login-Daten an einen \textit{Report Server} geschickt. Zusätzlich separiert davon findet die Infektion der Geräte mit einem \textit{loader program} statt, durch logging der Systemspezifikationen. Im letzten Schritt wird die Systemspezifische Malware heruntergeladen und ausgeführt. \\ Im Anschluss dieser Schritte löscht Mirai die heruntegerladene Binärdatei und nennt das Programm in einen pseudozufälligen alphanumerische Namen um. Damit das Programm seine Robustheit erhöht, stoppt es zusätzlich alle Prozesse die im Zusammenhang mit den Ports TCP/22 und TCP/23 stehen und weitere die mit anderen Infektionen in Verbindung stehen könnten. Daraufhin warten die Bots auf Befehle für Angriffe vom C\&C-Server und das Botnetz breitet sich parallel weiter aus. \\ Die einzelnen infizierten Bots von Mirai lassen sich jedoch in der von Antonakakis et al. analysierten Version der Botnetz-Software entfernen, indem das Gerät neu gestartet wird, da es keine Umsetzung zur Persistierung gibt. Auch Bashlite ist ein IoT-Botnetz, welches einen ähnlichen Aufbau hat, aber durch bestimmte nicht Standarmäßig implementierte Funktionalitäten nicht so robust ist wie Mirai  \cite{DBLP:conf/iscc/MarzanoAFFHSCCG18}.\\[0.2in]
+
+Das Beispiel Mirai und auch \cite{dange2019iot} zeigen, dass der IoT-Botnetz Lebenszyklus ähnlich zu traditionellen Botnetzen ist, aber schwieriger zu erkennen. Zudem sagen die Autoren aus \cite{dange2019iot}, dass IoT-Geräte permanent erreichbar sind, was bei traditionellen Botnetzen nicht immer der Fall ist und sehr stark vom Netzwerk abhängt. Daraus lässt sich schließen, dass IoT-Geräte seltener ausgeschaltet werden und somit bleiben auch IoT-Geräte durch Mirai länger infiziert. Auch die Anzahl der existierenden IoT-Geräte im Vergleich zu traditionellen Botnetzen erlauben eine weitaus größere Anzahl an Bots, was die Notwendigkeit zu Sicherheitsmaßnahmen noch weiter unterschreibt.\\
+
+Der Nachteil dieser Botnetz Architektur ist der Single Point of Failure, der durch die zentralisierte Kommunikation über den C\&C-Server entsteht \cite{DBLP:series/isc/Oorschot21}. Diese Schwachstelle kann aber umgangen werden, durch die Verwendung von P2P-Botnetzen, wie sie im folgenden Kapitel erläutert werden.
+
+\subsubsection{Dezentrales Botnetz}
+
+Anders als zentrale IoT-Botnetze ist bei dezentralen IoT-Botnetzen jedes Gerät sowohl C\&C-Server als auch Datei-Server und kann einen Angriff initialisieren \cite{Prokofiev_2019}. Bei diesen P2P-Architekturen findet eine gleichmäßig verteilte Aufgabenverteilung statt und die Kommunikation zwischen dem Botmaster und den Bots findet über das P2P-Netzwerk (z.B. BitTorrent) statt \cite{DBLP:journals/scn/DonnoDGS18}. \\[0.2in]
+
+Hide'n'Seek \cite{Diaconescu2018HIDENSEEKAA} (HNS) ist ein dezentrales IoT-Botnetz, welches durch eine Tabelle mehrere Exploits einsetzen kann und diese Tabelle dynamisch erweitert sowie einem individuellen P2P-Netzwerk, welches nicht auf bekannte Netzwerke zurückgreift. Zur Infektion von IoT-Geräten sucht das Botnetz nach offenen Ports wie unter anderem Telnet. Wenn der Port offen ist, dann wird das Gerät anhand einer Wörterbuch-Attacke infiziert indem Standard Anmeldeinformationen durchiteriert werden. Nach einem erfolgreichen Zugang sucht das Botnetz nach Systeminformationen, indem es systemspezifische Befehle ausführt und die Informationen speichert. Im Anschluss wird eine Bösartige Binärdatei ausgeführt, die anhand der Systeminformationen kompiliert und ausgeführt wird. Zur Ausbreitung wendet HNS eine ähnliche Scan-Methode an wie Mirai, bei der über das Internet nach vulnerablen IoT-Geräten gesucht wird und zur Erhöhung der Leistung werden zum finden der Geräte nur TCP SYN Pakete verschickt.\\ Das Botnetz ist folgendermaßen aufgebaut: es gibt 14 C\&Cs, welche Befehle empfangen und von der Binärdatei ausgegeben werden. Dabei fällt auf, dass es keine unidirektionalen Kommunikationswege gibt und die Binärdatei hält auch die Liste an C\&Cs aktuell. \todo{Das passt noch nicht von der Struktur her.}
+
+\subsubsection{Hybrides Botnetz}
+
+Die dritte Botnetzarchitektur ist eine Kombination aus den vorangegangenen Architekturen. Bei dieser Architektur gibt es einen zentralen C\&C-Server, Bots die sowohl Client und Server sind und Bots die nur als Clients agieren \cite{10.1007/978-3-030-33229-7_21}. \\[0.2in]
+
+Wang et al. stellen Pink \cite{DBLP:conf/colcom/WangSZLGD22} vor, dass aus der Kombination eines zentralen und dezentralen Botnetzes besteht. Pink ist aus den folgenden fünf Komponenten zusammengestellt. Botmaster, Drittanbieter Programme, C\&C-Server, P2P-Netzwerk und Pink bots.
+
+\paragraph{Botmaster.} Der Botmaster führt die Angriffe durch, indem er von Angreifern Konfigurationsdateien erhält und diese an das Botnetz weiterleitet. Die Dateien sind an die Drittanbieter, das P2P (B-Segment) und den C\&C-Server angepasst, um die Verteilung ohne Fehler zu durchlaufen. 
+\paragraph{Drittanbieter Programme.} Die Drittanbieter Programme sind Github \cite{DBLP:conf/msr/KalliamvakouGBSGD14} und BTC \cite{DBLP:conf/icccn/Sidhu17}. Die Pink-Bots gehen ein BTC-Wallet durch, welches durch Tags mit Github Projekten verbunden ist und ein verstecktes Projekt enthält. Diese Ausbreitungslogik der Konfigurationsdateien ist Robust gegen Github-Strikes, da die Strikes nur verteilt werden können, wenn auch die das BTC-Wallet blockiert wird. 
+\paragraph{B-Segment.} Zur Verbindung neuer Pink-Bots und um bekannte Pink-Bots zu finden, nutzt das P2P-Netzwerk B-Segment. Die Pink-Bots nutzen den P2P-Kommunikationsport des Network Time Protocols (NTP), um andere Pink-Bots im Adressbereich eines Klasse-B-Netzwerks zu finden. Dazu versuchen sich die neuen Bots zuerst mit vier Adressbereichen von Klasse-B-Netzwerken mit dem gleichen Inhalt zu verbinden. Diese Methode ist im vergleich zu Mirai \cite{DBLP:conf/uss/AntonakakisABBB17} eine zentralisierte Methode der Infektion, indem das Botnetz sich nur auf den besagten Adressbereich beschränkt. Ein Grund für diese Methode ist, dass IoT-Geräte sich in diesem Bereich befinden und die gleichen Schwachstellen besitzen. So lassen sich außerdem schnell viele vulnerable IoT-Geräte identifizieren.
+\paragraph{C\&C-Server.} Eine weitere Verbreitungsmethode ist der C\&C-Server, welcher in Pink Binärdateien auffindbar ist. Die Aufgabe des C\&C-Servers ist die Verteilung der Konfigurationsdatei an neue Pink-Bots und dem Verschicken von Befehlen an die Pink-Bots. 
+\paragraph{Pink-Bots.} Die Pink-Bots sind IoT-Geräte, welche auf der MIPS Prozessor Architektur \cite{Novkovic_Lukac_Jovanovic_Kastelan_2020} basieren. Um das Gerät zu infizieren, wird der NTP Port 123 belegt. Initial kommuniziert der Pink-Bot mit dem C\&C-Server, um die Konfigurationsdatei zu bekommen und versucht dann die vier Adressen im Klasse-B-Netzwerk zu erreichen, um das P2P-Netzwerk zu erreichen. Im vergleich zu Mirai und anderen IoT-Botnetzen, können Pink-Bots persitent aktiv bleiben, indem sie die Firmware des Routers flashen.
+
+\newpage
+
+\subsection{Methoden zur Erkennung von IoT-Botnetzen}
+
+Neben den vorher erläuterten IoT-Botnetzen besteht auch die Notwendigkeit die verschiedenen Erkennungsmethoden separat zu erläutern. Die verschiedenen Methoden sollen einen Überblick geben, wie diese umgesetzt werden anhand unterschiedlicher Technologien. Zudem erläutert dieses Kapitel die verschiedenen Methoden in Kombination als hybride IoT-Botnetzerkennung.  \\[0.2in]
+
+\todo[inline]{Am besten erstmal Beispiele geben zu einzelnen Erkennungen und danach in einem weiteren Kapitel die hybriden Methoden beschreiben.}
+Abbildung \ref{fig:det_meth_diag} stellt Methoden der Botnetzerkennung als Baumstruktur dar und zeigt, dass unter anderem anomalie- und signatur-basierte Erkennungsmethoden eingesetzt werden \cite{Xing2021SurveyOB, jcp2010006, DBLP:journals/scn/GarciaZC14, DBLP:journals/corr/abs-2207-12937}. Zusätzlich erwähnen \cite{Xing2021SurveyOB,barazi_2014} auch Honeypots oder Honeynets als Erkennungsmethoden. Honeypots sind zum Sammeln von Daten vorgesehen, zum besseren Verständnis wie sich Botnetze in den einzelnen Phasen verhalten \cite{DBLP:journals/corr/abs-2108-02287} und können bereits bekannte Botnetze identifizieren. Bei signatur-basierten Methoden handelt es sich um die Erkennung von bereits bekannten Mustern, verglichen mit Mustern aus einer Datenbank wie \cite{Apostol_2021} erläutern. Anders als bei signatur-basierten Methoden erläutern die Autoren weiter, das anomalie-basierte Methoden Netzwerkverkehr in gutartigen und bösartigen Verkehr unterteilen. \\ Xing et al. \cite{Xing2021SurveyOB} geben in ihrer Übersicht der Methoden zur Botnetzerkennung an, dass verschiedene Techniken zur Umsetzung der Methoden, auch Methodenübergreifend, in Kombination eingesetzt werden sollten. 
+
+\begin{figure}[ht]
+    \centering
+    \includesvg[scale=0.8]{pictures/det_meth_diag.svg}
+    \caption{Diagramm zur Darstellung der Methoden für die IoT-Botnetzerkennung.}
+    \label{fig:det_meth_diag}
+\end{figure}
+
+Nach Wainwright und Kettani \cite{DBLP:conf/iccda/WainwrightK19} befassen sich die genannten Methoden im Zeitlichen Rahmen hauptsächlich mit der Erkennung eines Botnetzes während oder nach einem Angriff. Die Autoren erläutern, dass es durch mathematische Modelle möglich ist, die Maßnahmen zur Erkennung im präventiv zu testen. Dazu gehen Wainwright und Kettani auf mehrere Modelle ein: epidemiologische-, ML-, stochastisch-, Spieltheorie-, nichtparametrische Bayes'sche-, Graphen- und Ökonomische Modelle. \\[0.2in]
+
+Da diese Arbeit sich auf die Kombination der verschiedenen Methoden und deren zugehörige Techniken konzentriert, erläutert dieses Kapitel zu Beginn die verschiedenen Methoden und im Anschluss  hybride Methoden und deren dahinter liegende Techniken zur Umsetzung, um ein Gesamtbild der aktuell bekannten hybriden IoT-Botnetzererkennungen zu bilden. Die Modelle nach Wainwright und Kettani werden außerdem in einem eigenen Kapitel erläutert, außer die ML-Modelle, da diese den Bezug in der anomalie-basierte Erkennung haben. \todo{Nochmal gucken, ob das nicht alles in anomalie passt}\\ 
+Beginnend mit der Analyse zur Verbesserung der IoT-Botnetzerkennung, erläutert das folgende Kapitel Honeypots, welche speziell für IoT-Botnetze implementiert wurden.
+
+\subsubsection{Analyse durch Honeypots}
+
+Nach Sanders und Smith  \cite{SANDERS2014317} ist ein Honeypot eine einsetzbare Ressource, welche darauf ausgelegt ist, kompromitiert und angegriffen zu werden. Weiter ist ein Honeypot ein eingesetzter Teil einer Software oder eines Systems, welches ein anderes System imitiert und so eingesetzt wird, dass es von Angreifenden einfach gefunden werden kann. Damit können Angreifende das imitierte System, welches isoliert von anderen Netzwerkgeräten ist, oder die Software exploiten, ohne die echten Daten des Systems in Gefahr zu bringen. Zusätzlich sagen die Autoren, dass der Honeypot die Informationen durch logging speichert, um Gegenmaßnahmen zu treffen, basierend auf Prozeduren, eingesetzten Tools und Taktiken. \\ Honeypots werden selten in produktiven Netzwerken eingesetzt, sondern finden eher ihren Platz in forschungs- oder akademischen Umgebungen \todo{Hier auch eine Quelle}. \\[0.2in]
+
+Sanders und Smith unterteilen Honeypots in Interaktionsgraden, welche typischerweise als high- und low-interaction bezeichnet werden. Low-interaction Honeypots sind Software-basiert, um Services zu emulieren wie zum Beispiel das MQTT Protokoll. Ein Beispiel für einen low-interaction Honeypot ist Dionaea \cite{DBLP:conf/iccst/SethiaJ19}. High-interaction Honeypots dagegenen spiegeln ein komplettes System wieder, um dem Angreifer vollen Zugriff auf das Betriebssystem zu geben. Beispiele für solche Honeypots sind unter anderem \cite{DBLP:journals/jip/PaSYMKR16,Srinivasa_2021}. \\[0.2in]
+
+Um die IoT-Botnetzerkennung zu optimieren, ist es hilfreich, die IoT-Botnetze in eine Falle zu locken durch den Einsatz von Honeypots \cite{Xing2021SurveyOB}, was unter anderem \cite{DBLP:journals/corr/abs-2305-06430,DBLP:conf/sigcomm/MetongnonS18,DBLP:journals/jip/PaSYMKR16} zeigen. \\ 
+Pa et al. \cite{DBLP:journals/jip/PaSYMKR16} setzen den Fokus bei ihrem Honeypot auf Angriffe, die auf das Telnet Protokoll basieren. Die Hauptkomponente des Honeypots sind Akteure die IoT-Geräte darstellen: durch die Verwaltung von TCP Verbindungen, Authentifizierung, Befehlsinteraktionen mit Geräteprofilen und initiale Interaktionen. Jedes IoT-Gerät besteht aus den vorher genannten Komponenten mit einer zusätzlichen Login-Aufforderung. Sollte ein Befehl nicht bekannt sein, so werden die Befehle an eine Sandbox Umgebung weitergeleitet, welche durch einen \textit{Profiler} extrahiert werden. Der \textit{Profiler} speichert die Antworten, damit die noch unbekannten Befehle auch ohne die Sandbox Umgebung verarbeitet werden können. \\ Diese Umgebung (von den Autoren IoTBOX genannt) ist ein Linux Betriebssystem auf der Geräte simuliert werden, welche anhand verschiedener CPU Architekturen, IoT-Geräte darstellen. Da die Befehle an IoTBOX zu Infektionen führen können, wird das Betriebssystem immer wieder zurückgesetzt. Zusätzlich zur Verarbeitung unbekannter Befehle, analysiert die IoTBOX gefundene Malware. Die Malware kann vom \textit{Profiler} in einem aktiven Scan Modus Netzwerke scannen oder im Besucher Modus eingehende Verbindungen zum Honeypot verarbeiten. Eine weitere Komponente ist der \textit{Downloader}, welcher remote Interaktionen prüft, die Malware Binaries herunterladen. \todo{Paper nochmal lesen, um mehr Details zu beschreiben.} \\[0.2in]
+
+Auch RIoTPot\cite{Srinivasa_2021,DBLP:conf/acsac/SrinivasaPV22} ist ein Honeypot spezifisch für IoT-Botnetze in der Umgebung von Industrial Control Systems. Dabei basiert die Architektur auf modularen Kompoenenten, welche die Funktionalitäten unabhängig voneinander ausführen lässt. Die hauptsächlichen Module sind: \textit{core}, \textit{packet capture and noise filter}, \textit{low-interaction}, \textit{high-interaction} und die \textit{attack database}. \\
+Mit Abschluss der gesammelten IoT-Botnetzdaten, sollen anschließend Maßnahmen getroffen werden, wie Regeln zur IoT-Botnetzerkennung zu entwickeln, zum Einsatz in Signatur-basierten IDS oder für die Anomalie-basierten IDS Erkennungsmethoden.
+
+\subsubsection{Signatur-basierte IoT-Botnetzerkennung}
+
+Die am weitesten verbreitete Variante eines IDS, ist die Signatur-basierte, welche anhand von Paketdaten nach Hinweisen zu Kompromittierungen suchen \cite{SANDERS2014317}. Dabei ist es wichtig zu erwähnen, dass moderne Signatur-basierte IDS weniger dafür genutzt wird, jeden bösartigen Code zu erkennen, sondern den Fokus auf spezifische Probleme setzt \cite{DBLP:series/txcs/Kizza20}. \\[0.2in]
+
+Soe et al. \cite{BNCSS113} schlagen eine Technik vor, Regeln zu generieren für ein Signatur-basiertes IDS, bei dem die Regeln sich auf die Erkennung von IoT-Botnetzen fokussieren. Die Autoren beziehen sich dabei auf den Datensatz Bot-IoT \cite{DBLP:journals/fgcs/KoroniotisMST19}, um Angriffs-Signaturen zu erkennen. Um die verschiedenen Angriffe zu erkennen, werden aus dem Datensatz anhand von Correlation-based feature selection (CFS) über einen decision-tree Algorithmus \cite{Ashari_2013} 16 Regeln erstellt wodurch es möglich ist, durch die niedrige Zahl an Regeln, das IDS direkt auf den IoT-Geräten auszuführen, da der Bot-IoT Datensatz Speicherplatz erfordert, welcher auf den IoT-Geräten nicht verfügbar ist. \\[0.2in]
+
+Ein weiteres Beispiel ist die Arbeit von Abbas et al. \cite{DBLP:journals/di/AbbasHSZ21}, welche eine statische Code Analyse von Mirai und Qbot Botnetz Varianten ausführten. Aus dieser Analyse entwickelten die Autoren Signaturen heraus, die zur Erkennung von IoT-Botnetzen nutzbar sind. Die Signaturen entstehen dabei aus CPU Architekturen, Bot Befehle, Bot Scanner Befehle, Methoden zur Verschleierung, Botnetz spezifische Schwachstellen die ausgenutzt werden und Angriffe. \\ 
+\todo{Besseren Übergang schreiben} Die anomalie-basierten Methoden lassen diese sich zusätzlich in Host- und netzwerkbasierte Methoden unterteilen \cite{DBLP:journals/peerj-cs/Al-mashhadiAHA21, DBLP:journals/corr/cs-CR-0406052}, wie folgendes Kapitel näher erläutert.
+
+\subsubsection{Anomalie-basierte IoT-Botnetzerkennung}
+
+\paragraph{Hostbasierte Methode.} Hostbasierte Ansätze konzentrieren sich beim Überwachen auf die lokalen Geräte, wie Breitenbacher et al. \cite{DBLP:journals/corr/abs-1905-01027} mit HADES-IoT zeigen. Breitenbacher et al. gehen dabei nach einem proaktiven whitelisting Ansatz vor, welcher den Fokus auf Prävention von Leistungsüberlastung setzt, um auf den IoT-Geräten direkt ausführbar zu sein. Der Fokus liegt besonders auf noch nicht infzierten Geräten, die ohne erneute Kompilierung des Kernels, die Erkennung ausführen können. \\
+Der Prozess ist in zwei Teile unterteilt i) Profiling Mode und ii) Enforcing Mode. Vor dem Profiling Mode geht es um die Persitierung während des Boot Prozesses. Dabei wird die pre-kompilierte Binärdatei auf das IoT-Gerät geladen und es wird sichergestellt, dass der Kernel das Programm bei jedem Boot Prozess lädt. i) im Profiling Mode überwacht HADES-IoT alle Aufrufe an \textit{execve}. Zusätzlich wird die Whitelist ständig aktualisiert und beendet dann den Modus, wenn nach einer festgelegten Zeit keine Aufrufe an \textit{execve} stattfinden. ii) auf den Enforcing Mode geht diese Arbeit nicht ein, da dieser für Gegenmaßnahmen zuständig ist, die diese Arbeit nicht behandelt. \\ 
+Eine Kernfunktion neben der Whitelist ist die Interception Function. Die genannte Funktion sucht in der System Call Tabelle nach der \textit{execve} Adresse und ersetzt die Adresse durch die Interception Function. Dabei untersucht die Funktion den Pfad des Prozesses der als nächstes aufgerufen wird und vergleicht die Informationen des nächsten Prozesses mit der Whitelist, um das Programm zu authorisieren und im Anschluss die \textit{execve} Funktion aufzurufen. \\ 
+Die Whitelist gilt als ein Problem, welches zur Leistungsüberlastung führen kann, wenn die Liste als Linked List implementiert wird, da sie eine asymptotische Zeitkomplexität von $O(n)$ bei der Suche nach Einträgen hat. Um das zu verhindern entschieden sich die Autoren auf die Umsetzung einer Hashtable mit einer asymptotischen Zeitkomplexität von $O(1)$ \cite{huang2003efficient}.
+
+\paragraph{Netzwerkbasierte Methode.} Netzwerkbasierte Ansätze konzentrieren sich auf die Erkennung von IoT-Botnetzen über Netzwerk Protokolle. Ein Beispiel ist die Arbeit über N-BaIoT \cite{DBLP:journals/pervasive/MeidanBMMSBE18}. Die Autoren Meidan et al. erläutern in dieser Arbeit die Erkennung von Verhaltensmustern eines Netzwerks während eines Angriffs durch IoT-Botnetze mithilfe von Deep Autoencoder. Die Erkennung ist in vier Schritte aufgeteilt: i) Datenerhebung ii) Feature-Extraktion iii) trainieren des anomalie Detektors iv) durchgehende Überwachung. i) im ersten Schritt wird der Netzwerkverkehr über Port-mirroring auf einem Switch gesammelt, von IoT-Geräten, die über einen Access Point mit dem Switch verbunden sind. ii) es wird ein Snapshot mit dem Verhalten von allen Hosts und Protokollen gespeichert, welche mit einem aufgezeichneten Paket in Verbindung stehen. Im Detail besteht der Snapshot aus einer Zusammenfassung des Verkehrs von mehreren Zeitfenstern, der den Kontext des Pakets bildet. Dabei achten die Autoren auf dieselbe Quell-IP-Adresse und die dazugehörige MAC-Adresse, den Kanal zwischen Quell- und Ziel-IP sowie auf Quell- und Ziel TCP/UDP Sockets. iii) um den Netzwerkverkehr nun auf anomalien zu klassifizieren, wird ein Autoencoder trainiert, welcher für jedes IoT-Gerät separat eingesetzt wird. Ein Autoencoder ist ein neuronales Netz (NN) mit dem Ziel einer Rekonstruktion eines $d$-dimensionalen Eingabe Vektors als $d$-dimensionalen Ausgabe Vektors \cite{herve_2022}. Das Training des Autoencoders bestand ausschließlich auf Datensätzen (ein Datensatz zum Training und ein weiterer zur Optimierung) von gutartigem Netzwerkverkehr. Der Datensatz zur Optimierung ist dazu vorgesehen einen Schwellenwert zwischen gutartigem und bösartigem Verkehr zu unterscheiden. iv) im letzten Schritt wird der Netzwerkverkehr beobachtet und auf gutartigen oder bösartigen Verkehr klassifiziert. Wenn bösartiger Verkehr erkannt wird, dann schlägt das System alarm für das spezifische IoT-Gerät. \\[0.2in] 
+
+In \cite{DBLP:journals/ett/SpauldingPKNM19} präsentieren die Autoren eine Möglichkeit, proaktiv in Echtzeit, Domain Generation Algorithm (DGA)-Domänennamen eines DNS-Servers herauszufiltern, mit einem ML Modell. Bei dieser Arbeit ist den Autoren aufgefallen, dass die automatisierte Generierung von bösartigen Domänenanmen schon vor der Registrierung eine Vielzahl an Anfragen stellen und als nicht existierende Domäne (NXDomain) beantwortet werden. Nach der Registrierung gehen die Anfragen dann zurück und damit zeigt sich ein Muster über die Zeit hinweg. Das Muster wird dann mit dem Faktor Zeit und dem Conficker Datensatz \cite{DBLP:conf/www/ThomasM14} durch supervised learning in das ML Modell trainiert. Das ML Modell kann dann proaktiv Domänen vor der Registrierung erkennen. \\[0.2in]
+
+Wazzan et al. \cite{Wazzan2021InternetOT} führen aus, dass die Kombination 
+verschiedener Techniken zur Erkennung von IoT-Botnetzen zur Optimierung der Erkennung führen und schlagen 
+vor, Kombination aus verschiedenen Techniken zu nutzen und diese sogenannte hybride Botnetzerkennung für 
+jede Phase eines Botnetzes durchzuführen. Im Mittelpunkt der Arbeit fassen die Autoren verschiedene Arbeiten zusammen und erklären die gängigsten ML Algorithmen sowie verallgemeinerte Phasen wie sich IoT-Botnetze verbreiten und welche 
+Angriffsmöglichkeiten über sie ausgeführt werden können. Dazu führen sie auf welche Techniken zur Erkennung weiter erforscht werden sollten. Im Zusammenhang mit ML werden hauptsächlich nur passive Techniken durch die ML Modelle realisiert. Daher schlagen die Autoren vor, aktive Ansätze zu realisieren, um Schäden durch Botnetze zu vermeiden. \\[0.2in]
+
+Neben dem Vorschlag proaktive Ansätze zu realisieren erläutern Wazzan et al. das fehlen von geeigneten Datensätzen für das Training von verdächtigen Aktivitäten durch Botnetze, weil die Datensätze wie N-BaIoT \cite{DBLP:journals/pervasive/MeidanBMMSBE18}, MedIoT \cite{DBLP:conf/icissp/Guerra-Manzanares20} und IoT23 \cite{sebastian_garcia_2020_4743746} entweder nicht von IoT-Geräten stammen oder wenn sie von IoT-Geräten extrahiert wurden, dann sind diese nur spezifisch für ein IoT-Netzwerk einsetzbar wie z.B. Smart Home Systeme. Daher schlagen die Autoren vor, mehr Datensätze zu erstellen, welche von realen IoT-Geräten stammen oder weitere IoT-Netzwerke wiederspiegeln. Eine vorgeschlagene Lösung ist das einsetzen von Honeypots, um entsprechende Datensätze zu erstellen. Der Einsatz von ML ist sowohl für host- und netzwerk-basierte Problemstellungen einsetzbar. Zusätzlich zu ML Modellen gibt es Techniken wie Schwarm-Intelligenz, komplexe Netzwerke, statistische Analysen, verteilte Ansätze und Kombinationsmethoden \cite{Xing2021SurveyOB}.
+
+\subsection{Hybride IoT-Botnetzerkennung}
+
+Ein Beispiel, welches sowohl anomalie- und signatur-basierte IDS kombiniert, zeigt \cite{electronics8111210}. 
+
+\subsection{Zusammenfassung}
+
+Um IoT-Botnetze zu erkennen, gibt es neben der signatur-basierten Methode, die anomlie-basierte Methode. Ziel dieser Methode ist es zwischen gutartigem und bösartigem Netzwerkverkehr zu unterscheiden. Zur Umsetzung werden zu meist ML Modelle eingesetzt, um mögliche unbekannte IoT-Botnetze zu erkennen \cite{Wazzan2021InternetOT}. Die vorgestellten Arbeiten, welche ML Modelle zur Erkennung hinzuziehen erreichen eine hohe \textit{accuracy} wodurch klargestellt wird, dass diese Arbeiten eine niedrigen \textit{false positive} Wert haben und somit die getesteten IoT-Botnetze erfolgreich klassifizieren. \\ 
+
+Dabei stellt sich allerdings die Frage, inwiefern diese Erkennungen in der ''realen Welt'' eingesetzt werden können in IoT-Netzwerken wie zum Beispiel Smart Home Systemen oder Smart Cities. \todo{Ab hier dann auf das (auch eigene) Paper eingehen}
+
+\begin{center}
+\begin{table}[ht]
+    \begin{center}
+    \begin{tabular}{p{5cm} m{2cm} m{2cm} c c}
+       \textbf{Titel} & \textbf{Autoren} & \textbf{Methode} & \textbf{Phase} & \textbf{Referenz} \\
+       \Xhline{4\arrayrulewidth}
+        EDIMA: Early Detection of IoT Malware Network Activity Using Machine Learning Techniques & Kumar und Lim & Netzwerk-basiert & Scan-Phase & \cite{DBLP:journals/corr/abs-1906-09715} \\
+        HADES-IoT: A Practical Host-Based Anomaly Detection System for IoT Devices (Extended Version) & Breitenbacher et al. & Host-basiert & Scan-Phase & \cite{DBLP:journals/corr/abs-1905-01027} \\
+        A Method to Detect Internet of Things Botnets & Prokofiev et al. & Netzwerk-basiert & Ausbreitungs-Phase & \cite{Prokofiev_2018} \\
+        N-BaIoT: Network-based Detection of IoT Botnet Attacks Using Deep Autoencoders & Meidan et al. & Netzwerk-basiert & Angriffs-Phase & \cite{DBLP:journals/pervasive/MeidanBMMSBE18} \\
+        Rule Generation for Signature Based Detection Systems of Cyber Attacks in IoT Environments & Soe et al. & Signatur-basiert & Angriffs-Phase & \cite{BNCSS113} \\
+        Generic signature development for IoT Botnet families & Abbas et al. & Signatur-basiert & Angriffs-Phase & \cite{DBLP:journals/di/AbbasHSZ21} \\
+       \hline
+    \end{tabular}
+    \end{center}
+    \caption{Publikationen zu IoT-Botnetzerkennungserkennungen nach Botnetz-Phase sortiert.}
+    \label{tab:tech_paper}
+\end{table}
+\end{center}

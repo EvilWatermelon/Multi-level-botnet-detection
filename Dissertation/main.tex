@@ -1,0 +1,174 @@
+ \documentclass[
+    a4paper,
+    pagesize,
+	pdftex,
+    12pt,
+    fleqn,
+    final
+]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usepackage[unicode=true,hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage[nopatch=footnote,draft=false,babel,tracking=true,kerning=true,spacing=true]{microtype}
+
+\usepackage{subcaption}
+\usepackage{abstract}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{enumitem}
+
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{float}
+\usepackage{setspace}
+
+\usepackage{todonotes}
+\usepackage{fancyhdr}
+\usepackage{svg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dissertation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{{./pictures/}}
+
+\begin{document}
+
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{center}
+
+        \Huge
+        \textbf{Hybride Erkennung von IoT-Botnetzen während der Scan-, Ausbreitungs- und Angriffsphase}
+             
+        \vspace{1.5cm}
+
+        \LARGE
+        \textbf{Dissertation} \\  
+        \large
+        zur Erlangung des Grades eines\\
+        Doktors der Naturwissenschaften (Dr. rer. nat.)
+
+        \vspace{1.5cm}
+        am Fachbereich Mathematik und Informatik\\
+        der Freien Universität Berlin\\
+        
+        \vspace{1.5cm}
+
+        vorgelegt von \\
+        \Large
+        \textbf{Jan Schröder}
+      
+        %\includegraphics[width=0.4\textwidth]{university}
+        \vspace{1.5cm}    
+        \large
+        Berlin, \today\\
+        
+        \newpage
+    \end{center}
+
+    \large
+    \begin{tabularx}{\textwidth}{X r}
+        Erstgutachter/in: & Prof. Dr. Jochen Schiller \\
+        Zweitgutachter/in: & Prof. Dr. Ulrich Meissen \\
+        Tag der Disputation: & \\
+    \end{tabularx}
+
+    
+\end{titlepage}
+
+\fontsize{13}{0}\selectfont
+
+\section*{Erklärung}
+
+Ich erkläre gegenüber der Freien Universität Berlin, dass ich die vorliegende
+Dissertation selbstständig und ohne Benutzung anderer als der angegebenen
+Quellen und Hilfsmittel angefertigt habe. Die vorliegende Arbeit ist frei von
+Plagiaten. Alle Ausführungen, die wörtlich oder inhaltlich aus anderen Schriften
+entnommen sind, habe ich als solche kenntlich gemacht. Diese Dissertation
+wurde in gleicher oder ähnlicher Form noch in keinem früheren Promotionsverfahren eingereicht. \\[0.2in]
+Mit einer Prüfung meiner Arbeit durch ein Plagiatsprüfungsprogramm erkläre
+ich mich einverstanden. \\[0.4in]
+
+\begin{center}
+\noindent\begin{tabular}{lc}
+Berlin, \today & \makebox[2.5in]{\hrulefill}\\
+&  (Jan Schröder) \\[8ex]% adds space between the two sets of signatures
+
+\end{tabular}
+\end{center}
+
+\newpage
+
+\section*{Publikationen}
+Die folgenden Publikationen wurden während der Dissertation veröffentlicht:
+
+\begin{itemize}
+    \item J. Schröder, J. Breier (2023) \\ \textbf{RMF: A Risk Measurement Framework for Machine Learning Models}
+    \item Honeypot/Honeynet Datensammlung
+    \item Paper zum Vergleich wie sinnvoll anomalie basierte ID ist (Neuauflage zu Paper von 2010)
+    \item Threat Model zu hybrider IoT-Botnetzerkennung
+    \item Weitere mögliche Paper zu Abschlussarbeiten
+\end{itemize}
+
+\newpage
+
+\pagenumbering{gobble}
+
+\fontsize{13}{0}\selectfont
+
+\tableofcontents
+\newpage
+
+\begin{abstract}
+    
+\end{abstract}
+
+\newpage
+
+\pagenumbering{arabic}
+
+\pagestyle{fancy}
+\lhead{\textit{\rightmark}}
+\rhead{\textbf{\thepage}}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\input{./chapter/introduction.tex}
+
+\input{./chapter/goals.tex}
+
+\newpage
+
+\input{./chapter/related_work.tex}
+
+\newpage
+
+\input{./chapter/data_acquisition}
+
+\newpage
+
+\input{./chapter/arch_concept.tex}
+
+\newpage
+
+\input{./chapter/implementation.tex}
+
+\newpage
+
+\input{./chapter/evaluation.tex}
+
+\newpage
+
+\input{./chapter/conclusion_and_outlook.tex}
+
+\newpage
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}
